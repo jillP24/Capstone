@@ -10,7 +10,7 @@ loginButton.addEventListener("click", (e) => {
     // Get the values input by the user in the form fields
     const email = loginForm.username.value;
 
-    if (email === "email") {
+    if (email.includes("coloradocollege"))  {
         // If the credentials are valid, show an alert box and reload the page
         alert("You have successfully logged in.");
         location.reload();
