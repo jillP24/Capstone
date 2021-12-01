@@ -8,7 +8,7 @@ loginButton.addEventListener("click", (e) => {
     // Prevent the default submission of the form
     e.preventDefault();
     // Get the values input by the user in the form fields
-    const email = loginForm.username.value;
+    const email = loginForm.email.value;
 
     if (email.includes("coloradocollege"))  {
         // If the credentials are valid, show an alert box and reload the page
