@@ -1,25 +1,15 @@
+<!-- try to incorporate code from https://www.c-sharpcorner.com/blogs/how-to-create-a-login-form-in-bootstrap -->
+<!-- gives you a simple log-in page -->
+<!-- lambda function differs from action in this index.html-->
+
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="UTF-8">
-    <title>CollegeConnect</title>
-    <!-- Add some CSS to change client UI -->
-    <style>
-    body {
-        background-color: #232F3E;
-        }
-    label, button {
-        color: #FF9900;
-        font-family: Arial, Helvetica, sans-serif;
-        font-size: 20px;
-        margin-left: 40px;
-        }
-     input {
-        color: #232F3E;
-        font-family: Arial, Helvetica, sans-serif;
-        font-size: 20px;
-        margin-left: 20px;
-        }
+    <meta charset="utf-8">  
+    <meta name="viewport" content="width=device-width, initial-scale=1">  
+    <link rel="stylesheet" href="https//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">  
+    <script src="https//ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>  
+    <script src="https//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>  
     </style>
     <script>
         // define the callAPI function that takes a first name and last name as parameters
@@ -38,6 +28,7 @@
                 redirect: 'follow'
             };
             // make API call with parameters and use promises to get response
+            // this is a specific link
             fetch("https://zpk0k10u9j.execute-api.us-east-1.amazonaws.com/dev", requestOptions)
             .then(response => response.text())
             .then(result => alert(JSON.parse(result).body))
@@ -46,13 +37,24 @@
     </script>
 </head>
 <body>
-    <form>
-        <label>First Name :</label>
-        <input type="text" id="fName">
-        <label>Last Name :</label>
-        <input type="text" id="lName">
-        <!-- set button onClick method to call function we defined passing input values as parameters -->
-        <button type="button" onclick="callAPI(document.getElementById('fName').value,document.getElementById('lName').value)">Call API</button>
-    </form>
+    <div class="container">  
+        <h2>Horizontal form</h2>  
+        <form class="form-horizontal">  
+            <div class="form-group"> <label class="control-label col-sm-2" for="firstName">User Name</label>  
+                <div class="col-sm-10"> <input type="firstName" class="form-control" id="firstName" placeholder="Enter email"> </div>  
+            </div>  
+            <div class="form-group"> <label class="control-label col-sm-2" for="pwd">Password</label>  
+                <div class="col-sm-10"> <input type="password" class="form-control" id="pwd" placeholder="Enter password"> </div>  
+            </div>  
+            <div class="form-group">  
+                <div class="col-sm-offset-2 col-sm-10">  
+                    <div class="checkbox"> <label><input type="checkbox"> Remember me</label> </div>  
+                </div>  
+            </div>  
+            <div class="form-group">  
+                <div class="col-sm-offset-2 col-sm-10"> <button type="submit" class="btn btn-primary">Submit</button> </div>  
+            </div>  
+        </form>  
+    </div>  
 </body>
 </html>
