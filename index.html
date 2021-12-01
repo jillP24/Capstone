@@ -1,58 +1,29 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <title>CCConnect</title>
-    <!-- Add some CSS to change client UI -->
-    <style>
-    body {
-        background-color: #232F3E;
-        }
-    label, button {
-        color: #FF9900;
-        font-family: Arial, Helvetica, sans-serif;
-        font-size: 20px;
-        margin-left: 40px;
-        }
-     input {
-        color: #232F3E;
-        font-family: Arial, Helvetica, sans-serif;
-        font-size: 20px;
-        margin-left: 20px;
-        }
-    </style>
-    <script>
-        // define the callAPI function that takes a first name and last name as parameters
-        var callAPI = (firstName,lastName)=>{
-            // instantiate a headers object
-            var myHeaders = new Headers();
-            // add content type header to object 
-            myHeaders.append("Content-Type", "application/json");
-            // using built in JSON utility package turn object to string and store in a variable
-            var raw = JSON.stringify({"firstName":firstName,"lastName":lastName});
-            // create a JSON object with parameters for API call and store in a variable
-            var requestOptions = {
-                method: 'POST',
-                headers: myHeaders,
-                body: raw,
-                redirect: 'follow'
-            };
-            // make API call with parameters and use promises to get response
-            fetch("https://zpk0k10u9j.execute-api.us-east-1.amazonaws.com/dev", requestOptions)
-            .then(response => response.text())
-            .then(result => alert(JSON.parse(result).body))
-            .catch(error => console.log('error', error));
-        }
-    </script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login</title>
+  <link rel="stylesheet" href="login-page.css">
+  <script defer src="login-page.js"></script>
 </head>
+
 <body>
-    <form>
-        <label>First Name :</label>
-        <input type="text" id="fName">
-        <label>Last Name :</label>
-        <input type="text" id="lName">
-        <!-- set button onClick method to call function we defined passing input values as parameters -->
-        <button type="button" onclick="callAPI(document.getElementById('fName').value,document.getElementById('lName').value)">Call API</button>
+  <main id="main-holder">
+    <h1 id="login-header">Login</h1>
+    
+    <div id="login-error-msg-holder">
+      <p id="login-error-msg">Invalid username <span id="error-msg-second-line">and/or password</span></p>
+    </div>
+    
+    <form id="login-form">
+      <input type="text" name="username" id="username-field" class="login-form-field" placeholder="Username">
+      <input type="password" name="password" id="password-field" class="login-form-field" placeholder="Password">
+      <input type="submit" value="Login" id="login-form-submit">
     </form>
+  
+  </main>
 </body>
+
 </html>
