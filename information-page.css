@@ -67,12 +67,12 @@ html{
   main grid */
   
   #login-form {
-    align-self: flex-start;
+    align-self: flex-start; 
     display: grid;
     justify-items: center;
     align-items: center;
   }
-  
+
   /* Style the login form fields' placeholders */
   
   .login-form-field::placeholder {
