@@ -7,38 +7,7 @@
   <title>CollegeConnect</title>
   <link rel="stylesheet" href="login-page.css">
   <script defer src="login-page.js"></script>
-  <script>
-     //define the callAPI function that takes email as parameters
-     var callAPI = (email)=>{
-             alert("alert!") // check for if callAPI is being called properly
-            // instantiate a headers object
-            var myHeaders = new Headers();
-            // add content type header to object
-            myHeaders.append("Content-Type", "application/json");
-            // using built in JSON utility package turn object to string and store in a variable
-            var raw = JSON.stringify({"email":email});
-            // create a JSON object with parameters for API call and store in a variable
-            var requestOptions = {
-                method: 'POST',
-                headers: myHeaders,
-                body: raw,
-                redirect: 'follow'
-            };
-            // make API call with parameters and use promises to get response
-            fetch("https://y1gibi1ksk.execute-api.us-east-1.amazonaws.com/dev", requestOptions);
-            console.log(response.status); //302
-            console.log(response.statusText); //OK
-            // .then(response => response.text())
-            // .then(result => alert(JSON.parse(result).body))
-            // .catch(error => console.log('error', error));   
-            //let response = await fetch("https://y1gibi1ksk.execute-api.us-east-1.amazonaws.com/dev", requestOptions);  
-            if(response.status === 302){
-              let data = await response.text();
-              //handle data
-              alert("alert!")
-            }
-        }      
-  </script>
+  
 </head>
 <body>
   <main id="main-holder">
@@ -52,7 +21,6 @@
     <form id="login-form">
       <input type="text" name="email" id="email" class="login-form-field" placeholder="School email">
       <input type="submit" value="Login" id="login-form-submit" onclick="callAPI(document.getElementById('email').value)">
-     
     </form>
   
   </main>
