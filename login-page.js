@@ -30,6 +30,10 @@ var callAPI = (email)=>{
 
     url = " https://y1gibi1ksk.execute-api.us-east-1.amazonaws.com/dev";
 
+  //  JSON.parse(result).body
+
+    window.location = "test.html"
+
     // make API call with parameters and use promises to get response
     fetch(url, requestOptions)
     .then(response => response.text())
