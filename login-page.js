@@ -34,9 +34,8 @@ var callAPI = (email)=>{
     .then(response => {
         // HTTP 301 response
         // HOW CAN I FOLLOW THE HTTP REDIRECT RESPONSE?
-        if (response.redirected) {
             window.location.href = response.url;
-        }
+        
     })
     .catch(function(err) {
         console.info(err + " url: " + url);
