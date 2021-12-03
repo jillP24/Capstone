@@ -32,8 +32,6 @@ var callAPI = (email)=>{
 
   //  JSON.parse(result).body
 
-    window.location = "homepage"
-
     // make API call with parameters and use promises to get response
     fetch(url, requestOptions)
     .then(response => response.text())
