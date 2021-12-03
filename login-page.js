@@ -29,7 +29,7 @@ loginButton.addEventListener("click", (e) => {
             // make API call with parameters and use promises to get response
             fetch("https://y1gibi1ksk.execute-api.us-east-1.amazonaws.com/dev", requestOptions)
             .then(response => response.text())
-            .then(result => alert(JSON.parse(result).body))
+            .then(result => alert(JSON.parse(result).headers.location))
             .catch(error => console.log('error', error));
         }
         
