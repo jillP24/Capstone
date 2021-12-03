@@ -28,16 +28,12 @@ var callAPI = (email)=>{
         redirect: 'follow'
     };
 
-    url = "https://y1gibi1ksk.execute-api.us-east-1.amazonaws.com/dev";
-    
+    url = " https://y1gibi1ksk.execute-api.us-east-1.amazonaws.com/dev";
+
+    // make API call with parameters and use promises to get response
     fetch(url, requestOptions)
-    .then(response => {
-        // HTTP 301 response
-        // HOW CAN I FOLLOW THE HTTP REDIRECT RESPONSE?
-            window.location.href = response.url;
-        
-    })
-    .catch(function(err) {
-        console.info(err + " url: " + url);
-    });
+    .then(response => response.text())
+    .then(result =>  window.location = (JSON.parse(result).body))
+    .catch(error => console.log('error', error));
+
 }
