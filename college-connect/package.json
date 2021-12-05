@@ -17,7 +17,7 @@
     "@mui/material": "latest",
     "react": "latest",
     "react-dom": "latest",
-    "react-scripts": "latest"
+    "react-scripts": "^4.0.3"
   },
   "browserslist": {
     "production": [
