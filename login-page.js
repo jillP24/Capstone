@@ -9,6 +9,7 @@ loginButton.addEventListener("click", (e) => {
     e.preventDefault();
     // Get the values input by the user in the form fields
     const email = loginForm.email.value;
+})
 
     if (email.includes("coloradocollege"))  {
        
@@ -41,4 +42,4 @@ loginButton.addEventListener("click", (e) => {
         // Otherwise, make the login error message show (change its oppacity)
         loginErrorMsg.style.opacity = 1;
     }
-})
+}
