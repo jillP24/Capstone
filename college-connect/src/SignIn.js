@@ -17,7 +17,7 @@ function Copyright(props) {
   return (
     <Typography variant="body2" color="text.secondary" align="center" {...props}>
       {'Copyright © '}
-      <Link color="inherit" href="https://mui.com/">
+      <Link color="inherit" href="https://www.facebook.com">
         CollegeConnect
       </Link>{' '}
       {new Date().getFullYear()}
@@ -34,7 +34,7 @@ export default function SignIn() {
     const data = new FormData(event.currentTarget);
     // eslint-disable-next-line no-console
     const email = data.get('email')
-    const password = data.get('password')
+    //const password = data.get('password')
 
     // instantiate a headers object
     var myHeaders = new Headers();
@@ -76,8 +76,9 @@ export default function SignIn() {
           <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
             <LockOutlinedIcon />
           </Avatar>
+          Sign in
           <Typography component="h1" variant="h5">
-            Sign in
+          CollegeConnect
           </Typography>
           <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
             <TextField
@@ -90,7 +91,7 @@ export default function SignIn() {
               autoComplete="email"
               autoFocus
             />
-            <TextField
+            {/* <TextField
               margin="normal"
               required
               fullWidth
@@ -99,11 +100,11 @@ export default function SignIn() {
               type="password"
               id="password"
               autoComplete="current-password"
-            />
-            <FormControlLabel
+            /> */}
+            {/* <FormControlLabel
               control={<Checkbox value="remember" color="primary" />}
               label="Remember me"
-            />
+            /> */}
             <Button
               type="submit"
               fullWidth
@@ -112,7 +113,7 @@ export default function SignIn() {
             >
               Sign In
             </Button>
-            <Grid container>
+            {/* <Grid container>
               <Grid item xs>
                 <Link href="#" variant="body2">
                   Forgot password?
@@ -123,7 +124,7 @@ export default function SignIn() {
                   {"Don't have an account? Sign Up"}
                 </Link>
               </Grid>
-            </Grid>
+            </Grid> */}
           </Box>
         </Box>
         <Copyright sx={{ mt: 8, mb: 4 }} />
