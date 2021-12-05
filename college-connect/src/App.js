@@ -10,7 +10,8 @@ function Copyright() {
   return (
     <Typography variant="body2" color="text.secondary" align="center">
       {'Copyright © '}
-      <Link color="inherit" href="https://mui.com/">
+      // we can href this link, but i don't know what we would link to 
+      <Link color="inherit" >
         CollegeConnect
       </Link>{' '}
       {new Date().getFullYear()}
