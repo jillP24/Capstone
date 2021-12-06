@@ -32,8 +32,6 @@ class App extends Component {
   }
 }
 
-export default App;
-
 
 // export default function App(){
 //   return(
@@ -47,10 +45,10 @@ export default App;
 //     );
 // }
 
-// export default function App() {
-//   return (
-//     <Information />
-//   );
-//   }
+export default function App() {
+   return (
+     <SignIn />
+   );
+   }
 
 //export default App;
