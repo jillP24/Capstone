@@ -59,7 +59,7 @@ function Information() {
 
     const login_function_url = " https://y1gibi1ksk.execute-api.us-east-1.amazonaws.com/dev";
 
-  //  JSON.parse(result).body
+    //  JSON.parse(result).body
 
     // make API call with parameters and use promises to get response
     fetch(login_function_url, requestOptions)

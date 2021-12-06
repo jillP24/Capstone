@@ -17,9 +17,8 @@ function Copyright(props) {
   return (
     <Typography variant="body2" color="text.secondary" align="center" {...props}>
       {'Copyright © '}
-      <Link color="inherit" href="https://www.facebook.com">
-        Information Page
-      </Link>{' '}
+        CollegeConnect
+      {' '}
       {new Date().getFullYear()}
       {'.'}
     </Typography>
@@ -35,6 +34,18 @@ export default function SignIn() {
     // eslint-disable-next-line no-console
     const email = data.get('email')
     //const password = data.get('password')
+
+    // while (!(email.contains("coloradocollege.edu"))){
+    //   return (
+    //     <TextField
+    //     error
+    //     id="outlined-error-helper-text"
+    //     label="Error"
+    //     defaultValue="Hello World"
+    //     helperText="Incorrect entry."
+    //   />
+    //   )
+    // }
 
     // instantiate a headers object
     var myHeaders = new Headers();
@@ -90,21 +101,8 @@ export default function SignIn() {
               name="email"
               autoComplete="email"
               autoFocus
+            
             />
-            {/* <TextField
-              margin="normal"
-              required
-              fullWidth
-              name="password"
-              label="Password"
-              type="password"
-              id="password"
-              autoComplete="current-password"
-            /> */}
-            {/* <FormControlLabel
-              control={<Checkbox value="remember" color="primary" />}
-              label="Remember me"
-            /> */}
             <Button
               type="submit"
               fullWidth
@@ -113,18 +111,6 @@ export default function SignIn() {
             >
               Sign In
             </Button>
-            {/* <Grid container>
-              <Grid item xs>
-                <Link href="#" variant="body2">
-                  Forgot password?
-                </Link>
-              </Grid>
-              <Grid item>
-                <Link href="#" variant="body2">
-                  {"Don't have an account? Sign Up"}
-                </Link>
-              </Grid>
-            </Grid> */}
           </Box>
         </Box>
         <Copyright sx={{ mt: 8, mb: 4 }} />
