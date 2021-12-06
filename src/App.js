@@ -5,7 +5,8 @@
 //import Link from '@mui/material/Link';
 import Information from './components/Information';
 import Home from './components/Home';
-import {BrowserRouter as Router, Route, Routes, Link} from "react-router-dom";
+import SignIn from './components/SignIn';
+import {BrowserRouter as Router, Route, Switch, Link} from "react-router-dom";
 // import { RouterOutlined } from '@mui/icons-material';
 import React, {Component} from 'react';
 
@@ -14,18 +15,19 @@ class App extends Component {
     return (
     <Router>
         <div>
-          <h2>CollegeConnect</h2>
+          {/* <h2>CollegeConnect</h2>
           <nav className="navbar navbar-expand-lg navbar-light bg-light">
           <ul className="navbar-nav mr-auto">
-            <li><Link to={'/'} className="nav-link"> Home </Link></li>
-            <li><Link to={'/information'} className="nav-link">Information</Link></li>
-          </ul>
-          </nav>
+            <li><Link to={'/'} className="nav-link"> Home Page </Link></li>
+            <li><Link to={'/information'} className="nav-link">Information Page</Link></li>
+          </ul> */}
+         {/* </nav> */}
           <hr />
-          <Routes>
-              <Route exact path='/' component={Home} />
+          <Switch>
+              <Route exact path='/' component={SignIn} />
               <Route path='/information' component={Information} />
-          </Routes>
+              <Route path='/home' component={Home} />
+          </Switch>
         </div>
       </Router>
     );
