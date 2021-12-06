@@ -3,10 +3,8 @@
 // import Typography from '@mui/material/Typography';
 // import Box from '@mui/material/Box';
 //import Link from '@mui/material/Link';
-import SignIn from './components/SignIn';
 import Information from './components/Information';
 import Home from './components/Home';
-import ProTip from './ProTip';
 import {BrowserRouter as Router, Route, Routes, Link} from "react-router-dom";
 // import { RouterOutlined } from '@mui/icons-material';
 import React, {Component} from 'react';
