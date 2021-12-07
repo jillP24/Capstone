@@ -12,6 +12,9 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { render } from 'react-dom';
+
+
 
 function Copyright(props) {
   return (
@@ -53,26 +56,39 @@ export default function SignIn() {
 
     //  JSON.parse(result).body
 
-    // would be cool to get the box working but an alert will do fine for now
-    let substring = "coloradocollege.edu"
-    if (!(email.includes(substring))){
-      // alert is working but the text field is not changing in response to the error
-      alert("Error: Colorado College email required.");
-      <TextField
-      error
-      id="outlined-error-helper-text"
-      label="Error"
-      defaultValue=""
-      helperText="Colorado College email required."
-    />
-
+    if(email.includes("home")) {
+      alert("Error: Should be going to home");
+      // make API call with parameters and use promises to get response
+    fetch(login_function_url, requestOptions)
+    .then(response => response.text())
+    .then(result =>  window.location = (JSON.parse(result).body))
+    .catch(error => console.log('error', error));
+    
+      
     }
 
+    // would be cool to get the box working but an alert will do fine for now
+    let substring = "coloradocollege.edu"
+    if ((email.includes(substring))){
+      //export default List;
     // make API call with parameters and use promises to get response
     fetch(login_function_url, requestOptions)
     .then(response => response.text())
     .then(result =>  window.location = (JSON.parse(result).body))
     .catch(error => console.log('error', error));
+    }
+    
+else {
+    // alert is working but the text field is not changing in response to the error
+    alert("Error: Colorado College email required.");
+    <TextField
+    error
+    id="outlined-error-helper-text"
+    label="Error"
+    defaultValue=""
+    helperText="Colorado College email required."
+  />
+}
   };
 
   return (
@@ -114,6 +130,7 @@ export default function SignIn() {
             >
               Sign In
             </Button>
+            <a href="home" class="active">Skip Ahead to Home Page</a>
           </Box>
         </Box>
         <Copyright sx={{ mt: 8, mb: 4 }} />

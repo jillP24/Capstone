@@ -77,7 +77,7 @@ export default function Home() {
           <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
             <LockOutlinedIcon />
           </Avatar>
-          Home Page
+          Welcome To The Home Page
           <Typography component="h1" variant="h5">
           CollegeConnect
           </Typography>
