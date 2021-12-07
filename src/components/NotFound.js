@@ -1,4 +1,4 @@
-import * as React from 'react';
+
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -12,13 +12,15 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import React, {Component} from 'react';
 
 function Copyright(props) {
   return (
     <Typography variant="body2" color="text.secondary" align="center" {...props}>
       {'Copyright © '}
+   
         CollegeConnect
-      {' '}
+     {' '}
       {new Date().getFullYear()}
       {'.'}
     </Typography>
@@ -27,7 +29,7 @@ function Copyright(props) {
 
 const theme = createTheme();
 
-export default function SignIn() {
+export default function Home() {
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
@@ -51,22 +53,7 @@ export default function SignIn() {
 
     const login_function_url = " https://y1gibi1ksk.execute-api.us-east-1.amazonaws.com/dev";
 
-    //  JSON.parse(result).body
-
-    // would be cool to get the box working but an alert will do fine for now
-    let substring = "coloradocollege.edu"
-    if (!(email.includes(substring))){
-      // alert is working but the text field is not changing in response to the error
-      alert("Error: Colorado College email required.");
-      <TextField
-      error
-      id="outlined-error-helper-text"
-      label="Error"
-      defaultValue=""
-      helperText="Colorado College email required."
-    />
-
-    }
+  //  JSON.parse(result).body
 
     // make API call with parameters and use promises to get response
     fetch(login_function_url, requestOptions)
@@ -76,7 +63,6 @@ export default function SignIn() {
   };
 
   return (
-    
     <ThemeProvider theme={theme}>
       <Container component="main" maxWidth="xs">
         <CssBaseline />
@@ -91,34 +77,14 @@ export default function SignIn() {
           <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
             <LockOutlinedIcon />
           </Avatar>
-          Sign in
+          
           <Typography component="h1" variant="h5">
-          CollegeConnect
+          Oops!  
+          <Typography display="block">You seemed to have entered a route that doesn't exist. </Typography>
           </Typography>
-          <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
-            <TextField
-              margin="normal"
-              required
-              fullWidth
-              id="email"
-              label="Email Address"
-              name="email"
-              autoComplete="email"
-              autoFocus
-            />
-            <Button
-              type="submit"
-              fullWidth
-              variant="contained"
-              sx={{ mt: 3, mb: 2 }}
-            >
-              Sign In
-            </Button>
-          </Box>
         </Box>
         <Copyright sx={{ mt: 8, mb: 4 }} />
       </Container>
     </ThemeProvider>
   );
 }
-

@@ -1,3 +1,4 @@
+
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -17,8 +18,8 @@ function Copyright(props) {
   return (
     <Typography variant="body2" color="text.secondary" align="center" {...props}>
       {'Copyright © '}
-      <Link color="inherit" href="https://www.facebook.com">
-        Information Page
+      <Link color="inherit">
+        CollegeConnect
       </Link>{' '}
       {new Date().getFullYear()}
       {'.'}
