@@ -24,9 +24,9 @@ function Copyright(props) {
   return (
     <Typography variant="body2" color="text.secondary" align="center" {...props}>
       {'Copyright © '}
-      <Link color="inherit">
+      
         CollegeConnect
-      </Link>{' '}
+      {' '}
       {new Date().getFullYear()}
       {'.'}
     </Typography>
@@ -59,7 +59,7 @@ function Information() {
 
     const login_function_url = " https://y1gibi1ksk.execute-api.us-east-1.amazonaws.com/dev";
 
-  //  JSON.parse(result).body
+    //  JSON.parse(result).body
 
     // make API call with parameters and use promises to get response
     fetch(login_function_url, requestOptions)
@@ -107,7 +107,17 @@ function Information() {
               label="Preferred Name"
               type="name"
               id="name"
-              autoComplete="current-password"
+              //autoComplete="current-password"
+            />
+               <TextField
+              margin="normal"
+              required
+              fullWidth
+              name="pronouns"
+              label="Pronouns"
+              type="pronouns"
+              id="pronouns"
+             // autoComplete="current-password"
             />
               <FormControl sx={{ m: 1, minWidth: 120 }}>
         <InputLabel id="demo-simple-select-helper-label">Graduation Year</InputLabel>
