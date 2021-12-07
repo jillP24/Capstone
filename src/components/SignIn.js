@@ -35,18 +35,6 @@ export default function SignIn() {
     const email = data.get('email')
     //const password = data.get('password')
 
-    // while (!(email.contains("coloradocollege.edu"))){
-    //   return (
-    //     <TextField
-    //     error
-    //     id="outlined-error-helper-text"
-    //     label="Error"
-    //     defaultValue="Hello World"
-    //     helperText="Incorrect entry."
-    //   />
-    //   )
-    // }
-
     // instantiate a headers object
     var myHeaders = new Headers();
     // add content type header to object
@@ -118,3 +106,13 @@ export default function SignIn() {
     </ThemeProvider>
   );
 }
+
+// function validateEmail(email){
+//   if (!(email.contains("coloradocollege.edu"))){
+//     error
+//               id="outlined-error-helper-text"
+//               label="Error"
+//               defaultValue=""
+//               helperText="Colorado College email required."
+//   }
+// }

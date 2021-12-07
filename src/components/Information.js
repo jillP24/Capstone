@@ -107,7 +107,17 @@ function Information() {
               label="Preferred Name"
               type="name"
               id="name"
-              autoComplete="current-password"
+              //autoComplete="current-password"
+            />
+               <TextField
+              margin="normal"
+              required
+              fullWidth
+              name="pronouns"
+              label="Pronouns"
+              type="pronouns"
+              id="pronouns"
+             // autoComplete="current-password"
             />
               <FormControl sx={{ m: 1, minWidth: 120 }}>
         <InputLabel id="demo-simple-select-helper-label">Graduation Year</InputLabel>
