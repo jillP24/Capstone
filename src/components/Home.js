@@ -29,6 +29,11 @@ function Copyright(props) {
 
 const theme = createTheme();
 
+// const MSG_SUBCRIPTION = 
+// {
+
+// }
+
 export default function Home() {
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -43,47 +48,75 @@ export default function Home() {
     myHeaders.append("Content-Type", "application/json");
     // using built in JSON utility package turn object to string and store in a variable
     var raw = JSON.stringify({"email":email});
-    // create a JSON object with parameters for API call and store in a variable
-    var requestOptions = {
-        method: 'POST',
-        headers: myHeaders,
-        body: raw,
-        redirect: 'follow'
-    };
+  }
+// const [Messages, setMessages]= React.useState([]);
 
-    const login_function_url = " https://y1gibi1ksk.execute-api.us-east-1.amazonaws.com/dev";
+//   React.useEffect(() => {
+//     fetch('', {
+//       method: "POST",
+//       headers: { "Content-Type": "application/json"},
+//       body: JSON.stringify({ subscription: MSG_SUBCRIPTION})
+//     }).then(response => response.json())
+//     .then(data => setMessages(data))
+//   }, []);
+<div>
+  <h1>New Messages</h1>
+  <ul>
 
-  //  JSON.parse(result).body
+  </ul>
+</div>
 
-    // make API call with parameters and use promises to get response
-    fetch(login_function_url, requestOptions)
-    .then(response => response.text())
-    .then(result =>  window.location = (JSON.parse(result).body))
-    .catch(error => console.log('error', error));
-  };
+return (
+    
+  <ThemeProvider theme={theme}>
+    <Container component="main" maxWidth="xs">
+      <CssBaseline />
+     
 
-  return (
-    <ThemeProvider theme={theme}>
-      <Container component="main" maxWidth="xs">
-        <CssBaseline />
-        <Box
-          sx={{
-            marginTop: 8,
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-          }}
-        >
-          <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
-            <LockOutlinedIcon />
-          </Avatar>
-          Welcome To The Home Page
-          <Typography component="h1" variant="h5">
-          CollegeConnect
-          </Typography>
+      <Box
+        sx={{
+          marginTop: -1,     
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'Center',
+        }}
+      >
+        <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
+          <LockOutlinedIcon />
+        </Avatar>
+        Message Log
+        <Typography component="h1" variant="h5">
+        ※ CollegeConnect ※
+        </Typography>
+        <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 50 }}>
+             
+          <TextField
+            margin="normal"
+            required
+            fullWidth
+            id="email"
+            label="Send Message"
+            name="email"
+            autoComplete="email"
+            autoFocus
+          />
+          <Button
+            type="submit"
+            width = "200px"
+            position= "absolute"
+            variant="contained"
+            
+            sx={{ mt: 0, mb: 0, "float": "right" }}
+          >
+            Send
+          </Button>
+          <a href="/" class="active">Go Back To Login</a>
         </Box>
-        <Copyright sx={{ mt: 8, mb: 4 }} />
-      </Container>
-    </ThemeProvider>
-  );
+      </Box>
+      <Copyright sx={{ mt: 8, mb: 4 }} />
+    </Container>
+  </ThemeProvider>
+);
+
 }
+  
