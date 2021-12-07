@@ -30,13 +30,30 @@ function Copyright(props) {
 
 const theme = createTheme();
 
+
 export default function SignIn() {
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
     // eslint-disable-next-line no-console
-    const email = data.get('email')
+    const email1 = data.get('email')
+    // case-insensitive
+    email = email1.toLowerCase();
     //const password = data.get('password')
+
+    let substring = "coloradocollege.edu"
+    if (!(email.includes(substring))){
+   
+      // alert is working but the text field is not changing in response to the error
+      alert("Error: Colorado College email required.");
+    //   <TextField
+    //   error
+    //   id="outlined-error-helper-text"
+    //   label="Error"
+    //   defaultValue=""
+    //   helperText="Colorado College email required."
+    // />
+    }
 
     // instantiate a headers object
     var myHeaders = new Headers();
@@ -121,6 +138,14 @@ else {
               name="email"
               autoComplete="email"
               autoFocus
+        
+              // error
+              // id="outlined-error-helper-text"
+              // label="Error"
+              // defaultValue=""
+              // helperText="Colorado College email required."
+              
+          
             />
             <Button
               type="submit"
@@ -139,3 +164,10 @@ else {
   );
 }
 
+// function validateForm() {
+//   var x = document.forms["myForm"]["fname"].value;
+//   if (x == "") {
+//     alert("Name must be filled out");
+//     return false;
+//   }
+// }
