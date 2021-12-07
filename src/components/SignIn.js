@@ -54,19 +54,7 @@ export default function SignIn() {
 
     const login_function_url = " https://y1gibi1ksk.execute-api.us-east-1.amazonaws.com/dev";
 
-    //  JSON.parse(result).body
-
-    if(email.includes("home")) {
-      alert("Error: Should be going to home");
-      // make API call with parameters and use promises to get response
-    fetch(login_function_url, requestOptions)
-    .then(response => response.text())
-    .then(result =>  window.location = (JSON.parse(result).body))
-    .catch(error => console.log('error', error));
     
-      
-    }
-
     // would be cool to get the box working but an alert will do fine for now
     let substring = "coloradocollege.edu"
     if ((email.includes(substring))){
