@@ -43,16 +43,8 @@ export default function SignIn() {
 
     let substring = "coloradocollege.edu";
     if (!(email.includes(substring))){
-   
       // alert is working but the text field is not changing in response to the error
       alert("Error: Colorado College email required.");
-    //   <TextField
-    //   error
-    //   id="outlined-error-helper-text"
-    //   label="Error"
-    //   defaultValue=""
-    //   helperText="Colorado College email required."
-    // />
     }
 
     // instantiate a headers object
@@ -72,40 +64,13 @@ export default function SignIn() {
     const login_function_url = " https://y1gibi1ksk.execute-api.us-east-1.amazonaws.com/dev";
 
     //  JSON.parse(result).body
-
-    if(email.includes("home")) {
-      alert("Error: Should be going to home");
-      // make API call with parameters and use promises to get response
-    fetch(login_function_url, requestOptions)
-    .then(response => response.text())
-    .then(result =>  window.location = (JSON.parse(result).body))
-    .catch(error => console.log('error', error));
-    
-      
-    }
-
-    // would be cool to get the box working but an alert will do fine for now
-     substring = "coloradocollege.edu"
-    if ((email.includes(substring))){
-      //export default List;
+    //export default List;
     // make API call with parameters and use promises to get response
     fetch(login_function_url, requestOptions)
     .then(response => response.text())
     .then(result =>  window.location = (JSON.parse(result).body))
     .catch(error => console.log('error', error));
-    }
-    
-else {
-    // alert is working but the text field is not changing in response to the error
-    alert("Error: Colorado College email required.");
-    <TextField
-    error
-    id="outlined-error-helper-text"
-    label="Error"
-    defaultValue=""
-    helperText="Colorado College email required."
-  />
-}
+
   };
 
   return (

@@ -1,4 +1,3 @@
-
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -92,7 +91,7 @@ return (
              
           <TextField
             margin="normal"
-            required
+
             fullWidth
             id="email"
             label="Send Message"
