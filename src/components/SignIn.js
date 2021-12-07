@@ -51,7 +51,22 @@ export default function SignIn() {
 
     const login_function_url = " https://y1gibi1ksk.execute-api.us-east-1.amazonaws.com/dev";
 
-  //  JSON.parse(result).body
+    //  JSON.parse(result).body
+
+    // would be cool to get the box working but an alert will do fine for now
+    let substring = "coloradocollege.edu"
+    if (!(email.includes(substring))){
+      // alert is working but the text field is not changing in response to the error
+      alert("Error: Colorado College email required.");
+      <TextField
+      error
+      id="outlined-error-helper-text"
+      label="Error"
+      defaultValue=""
+      helperText="Colorado College email required."
+    />
+
+    }
 
     // make API call with parameters and use promises to get response
     fetch(login_function_url, requestOptions)
@@ -61,6 +76,7 @@ export default function SignIn() {
   };
 
   return (
+    
     <ThemeProvider theme={theme}>
       <Container component="main" maxWidth="xs">
         <CssBaseline />
@@ -89,7 +105,6 @@ export default function SignIn() {
               name="email"
               autoComplete="email"
               autoFocus
-            
             />
             <Button
               type="submit"
@@ -107,12 +122,3 @@ export default function SignIn() {
   );
 }
 
-// function validateEmail(email){
-//   if (!(email.contains("coloradocollege.edu"))){
-//     error
-//               id="outlined-error-helper-text"
-//               label="Error"
-//               defaultValue=""
-//               helperText="Colorado College email required."
-//   }
-// }
