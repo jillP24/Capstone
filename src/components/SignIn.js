@@ -61,7 +61,7 @@ export default function SignIn() {
         redirect: 'follow'
     };
 
-    const login_function_url = " https://y1gibi1ksk.execute-api.us-east-1.amazonaws.com/dev";
+    const login_function_url = " https://kxhb14eybf.execute-api.us-west-2.amazonaws.com/dev";
 
     //  JSON.parse(result).body
     //export default List;
