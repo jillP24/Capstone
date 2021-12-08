@@ -12,6 +12,7 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import React, {Component} from 'react';
+import {ChatEngine} from 'react-chat-engine';
 
 function Copyright(props) {
   return (
@@ -66,7 +67,6 @@ export default function Home() {
 </div>
 
 return (
-    
   <ThemeProvider theme={theme}>
     <Container component="main" maxWidth="xs">
       <CssBaseline />
@@ -118,4 +118,3 @@ return (
 );
 
 }
-  

@@ -17,6 +17,7 @@
     "@mui/material": "latest",
     "history": "^5.1.0",
     "react": "latest",
+    "react-chat-engine": "^1.11.22",
     "react-dom": "latest",
     "react-native": "^0.66.3",
     "react-router-dom": "^5.2.0",
