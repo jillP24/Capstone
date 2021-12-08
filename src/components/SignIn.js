@@ -38,7 +38,7 @@ export default function SignIn() {
     // eslint-disable-next-line no-console
     const email1 = data.get('email')
     // case-insensitive
-    email = email1.toLowerCase();
+    const email = email1.toLowerCase();
     //const password = data.get('password')
 
     let substring = "coloradocollege.edu";
@@ -102,15 +102,7 @@ export default function SignIn() {
               label="Email Address"
               name="email"
               autoComplete="email"
-              autoFocus
-        
-              // error
-              // id="outlined-error-helper-text"
-              // label="Error"
-              // defaultValue=""
-              // helperText="Colorado College email required."
-              
-          
+              autoFocus          
             />
             <Button
               type="submit"
@@ -128,11 +120,3 @@ export default function SignIn() {
     </ThemeProvider>
   );
 }
-
-// function validateForm() {
-//   var x = document.forms["myForm"]["fname"].value;
-//   if (x == "") {
-//     alert("Name must be filled out");
-//     return false;
-//   }
-// }
