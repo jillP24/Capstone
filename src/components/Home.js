@@ -30,40 +30,9 @@ function Copyright(props) {
 const theme = createTheme();
 
 export default function Home() {
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    // eslint-disable-next-line no-console
-    const email = data.get('email')
-    //const password = data.get('password')
-
-    // instantiate a headers object
-    var myHeaders = new Headers();
-    // add content type header to object
-    myHeaders.append("Content-Type", "application/json");
-    // using built in JSON utility package turn object to string and store in a variable
-    var raw = JSON.stringify({"email":email});
-    // create a JSON object with parameters for API call and store in a variable
-    var requestOptions = {
-        method: 'POST',
-        headers: myHeaders,
-        body: raw,
-        redirect: 'follow'
-    };
-
-    const login_function_url = " https://y1gibi1ksk.execute-api.us-east-1.amazonaws.com/dev";
-
-  //  JSON.parse(result).body
-
-    // make API call with parameters and use promises to get response
-    fetch(login_function_url, requestOptions)
-    .then(response => response.text())
-    .then(result =>  window.location = (JSON.parse(result).body))
-    .catch(error => console.log('error', error));
-  };
 
   return (
-    <ThemeProvider theme={theme}>
+    <MatxTheme>
       <Container component="main" maxWidth="xs">
         <CssBaseline />
         <Box
@@ -84,6 +53,6 @@ export default function Home() {
         </Box>
         <Copyright sx={{ mt: 8, mb: 4 }} />
       </Container>
-    </ThemeProvider>
+    </MatxTheme>
   );
 }

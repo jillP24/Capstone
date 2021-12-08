@@ -3,8 +3,8 @@
   "version": "5.0.0",
   "private": true,
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
+    "start": "react-scripts --openssl-legacy-provider start",
+    "build": "react-scripts --openssl-legacy-provider build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
@@ -15,8 +15,10 @@
     "@material-ui/icons": "^4.11.2",
     "@mui/icons-material": "^5.2.0",
     "@mui/material": "latest",
+    "echarts": "^5.2.2",
     "history": "^5.1.0",
     "react": "latest",
+    "react-cas-client": "^1.1.0",
     "react-dom": "latest",
     "react-native": "^0.66.3",
     "react-router-dom": "^5.2.0",

@@ -13,6 +13,10 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { render } from 'react-dom';
+import CasClient, { constant } from "react-cas-client";
+let casEndpoint = "https://cas.coloradocollege.edu/cas/";
+let casOptions = { version: constant.CAS_VERSION_2_0 };
+let casClient = new CasClient(casEndpoint, casOptions);
 
 
 
@@ -52,31 +56,45 @@ export default function SignIn() {
         redirect: 'follow'
     };
 
-    const login_function_url = " https://y1gibi1ksk.execute-api.us-east-1.amazonaws.com/dev";
+    const login_function_url = "https://kxhb14eybf.execute-api.us-west-2.amazonaws.com/dev";
 
     //  JSON.parse(result).body
 
-    if(email.includes("home")) {
-      alert("Error: Should be going to home");
-      // make API call with parameters and use promises to get response
-    fetch(login_function_url, requestOptions)
-    .then(response => response.text())
-    .then(result =>  window.location = (JSON.parse(result).body))
-    .catch(error => console.log('error', error));
-    
-      
+    if(email.includes("coloradocollege")) {
+                  // Basic usage
+            casClient
+              .auth()
+              .then(successRes => {
+                console.log(successRes);
+                // Login user in state / locationStorage ()
+                // eg. loginUser(response.user);
+
+                // If proxy_callback_url is set, handle pgtpgtIou with Proxy Application
+
+                // Update current path to trim any extra params in url
+                // eg. this.props.history.replace(response.currentPath);
+              })
+              .catch(errorRes => {
+                console.error(errorRes);
+                // Error handling
+                // displayErrorByType(errorRes.type)
+
+                // Update current path to trim any extra params in url
+                // eg. this.props.history.replace(response.currentPath);
+  });
+
+// Login with gateway
+let gateway = true;
+
+casClient
+  .auth(gateway)
+  .then(successRes => {alert (successRes.user())})
+  .catch(errorRes => {});
     }
 
-    // would be cool to get the box working but an alert will do fine for now
-    let substring = "coloradocollege.edu"
-    if ((email.includes(substring))){
-      //export default List;
-    // make API call with parameters and use promises to get response
-    fetch(login_function_url, requestOptions)
-    .then(response => response.text())
-    .then(result =>  window.location = (JSON.parse(result).body))
-    .catch(error => console.log('error', error));
-    }
+    
+
+
     
 else {
     // alert is working but the text field is not changing in response to the error
@@ -89,6 +107,7 @@ else {
     helperText="Colorado College email required."
   />
 }
+
   };
 
   return (
