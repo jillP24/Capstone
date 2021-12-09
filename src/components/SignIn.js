@@ -14,7 +14,7 @@ import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import CasClient, { constant } from "react-cas-client";
 let casEndpoint = "https://cas.coloradocollege.edu/cas/";
-let casOptions = { version: constant.CAS_VERSION_2_0, proxy_callback_url: "https://main.d3vqlqvpmdvby4.amplifyapp.com"};
+let casOptions = { version: constant.CAS_VERSION_2_0};
 let casClient = new CasClient(casEndpoint, casOptions);
 
 
@@ -41,7 +41,7 @@ export default function SignIn() {
     //const password = data.get('password')
 
     let substring = "coloradocollege.edu"
-    if(email.includes("coloradocollege")) {
+    if(email.includes(substring)) {
             // Basic usage
       casClient
         .auth()
@@ -64,13 +64,6 @@ export default function SignIn() {
           // eg. this.props.history.replace(response.currentPath);
       });
 
-      // Login with gateway
-      let gateway = true;
-
-      casClient
-      .auth(gateway)
-      .then(successRes => {alert (successRes.user())})
-      .catch(errorRes => {});
 }
 
 
