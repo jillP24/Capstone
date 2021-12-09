@@ -12,6 +12,11 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import CasClient, { constant } from "react-cas-client";
+let casEndpoint = "https://cas.coloradocollege.edu/cas/";
+let casOptions = { version: constant.CAS_VERSION_2_0, proxy_callback_url: "https://main.d3vqlqvpmdvby4.amplifyapp.com"};
+let casClient = new CasClient(casEndpoint, casOptions);
+
 
 function Copyright(props) {
   return (
@@ -35,45 +40,39 @@ export default function SignIn() {
     const email = data.get('email')
     //const password = data.get('password')
 
-    // instantiate a headers object
-    var myHeaders = new Headers();
-    // add content type header to object
-    myHeaders.append("Content-Type", "application/json");
-    // using built in JSON utility package turn object to string and store in a variable
-    var raw = JSON.stringify({"email":email});
-    // create a JSON object with parameters for API call and store in a variable
-    var requestOptions = {
-        method: 'POST',
-        headers: myHeaders,
-        body: raw,
-        redirect: 'follow'
-    };
-
-    const login_function_url = " https://y1gibi1ksk.execute-api.us-east-1.amazonaws.com/dev";
-
-    //  JSON.parse(result).body
-
-    // would be cool to get the box working but an alert will do fine for now
     let substring = "coloradocollege.edu"
-    if (!(email.includes(substring))){
-      // alert is working but the text field is not changing in response to the error
-      alert("Error: Colorado College email required.");
-      <TextField
-      error
-      id="outlined-error-helper-text"
-      label="Error"
-      defaultValue=""
-      helperText="Colorado College email required."
-    />
+    if(email.includes("coloradocollege")) {
+            // Basic usage
+      casClient
+        .auth()
+        .then(successRes => {
+          console.log(successRes);
+          // Login user in state / locationStorage ()
+          // eg. loginUser(response.user);
 
-    }
+          // If proxy_callback_url is set, handle pgtpgtIou with Proxy Application
 
-    // make API call with parameters and use promises to get response
-    fetch(login_function_url, requestOptions)
-    .then(response => response.text())
-    .then(result =>  window.location = (JSON.parse(result).body))
-    .catch(error => console.log('error', error));
-  };
+          // Update current path to trim any extra params in url
+          // eg. this.props.history.replace(response.currentPath);
+        })
+        .catch(errorRes => {
+          console.error(errorRes);
+          // Error handling
+          // displayErrorByType(errorRes.type)
+
+          // Update current path to trim any extra params in url
+          // eg. this.props.history.replace(response.currentPath);
+      });
+
+      // Login with gateway
+      let gateway = true;
+
+      casClient
+      .auth(gateway)
+      .then(successRes => {alert (successRes.user())})
+      .catch(errorRes => {});
+}
+
 
   return (
     
@@ -122,3 +121,4 @@ export default function SignIn() {
   );
 }
 
+}
