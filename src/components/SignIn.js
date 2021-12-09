@@ -15,7 +15,7 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { render } from 'react-dom';
 import CasClient, { constant } from "react-cas-client";
 let casEndpoint = "https://cas.coloradocollege.edu/cas/";
-let casOptions = { version: constant.CAS_VERSION_2_0 };
+let casOptions = { version: constant.CAS_VERSION_2_0, proxy_callback_url: "https://main.d3vqlqvpmdvby4.amplifyapp.com"};
 let casClient = new CasClient(casEndpoint, casOptions);
 
 
