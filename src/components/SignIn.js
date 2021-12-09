@@ -82,6 +82,8 @@ export default function SignIn() {
                 // Update current path to trim any extra params in url
                 // eg. this.props.history.replace(response.currentPath);
   });
+      
+    }
     
 else {
     // alert is working but the text field is not changing in response to the error
