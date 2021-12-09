@@ -82,19 +82,6 @@ export default function SignIn() {
                 // Update current path to trim any extra params in url
                 // eg. this.props.history.replace(response.currentPath);
   });
-
-// Login with gateway
-let gateway = true;
-
-casClient
-  .auth(gateway)
-  .then(successRes => {alert (successRes.user())})
-  .catch(errorRes => {});
-    }
-
-    
-
-
     
 else {
     // alert is working but the text field is not changing in response to the error
