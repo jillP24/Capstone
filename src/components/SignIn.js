@@ -62,10 +62,13 @@ export default function SignIn() {
 
     if(email.includes("coloradocollege")) {
                   // Basic usage
+            console.log("In if statement");
             casClient
               .auth()
               .then(successRes => {
                 console.log(successRes);
+                alert(response.user);
+                
                 // Login user in state / locationStorage ()
                 // eg. loginUser(response.user);
 
@@ -74,6 +77,7 @@ export default function SignIn() {
                 // Update current path to trim any extra params in url
                 // eg. this.props.history.replace(response.currentPath);
               })
+      
               .catch(errorRes => {
                 console.error(errorRes);
                 // Error handling
