@@ -65,6 +65,7 @@ export default function SignIn() {
             console.log("In if statement");
             casClient
               .auth()
+              .then(console.log("Authentication done"))
               .then(successRes => {
                 console.log(successRes);
                 alert(response.user);
