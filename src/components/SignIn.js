@@ -52,7 +52,7 @@ export default function SignIn() {
         redirect: 'follow'
     };
 
-    const login_function_url = " https://y1gibi1ksk.execute-api.us-east-1.amazonaws.com/dev";
+    const login_function_url = "https://y1gibi1ksk.execute-api.us-east-1.amazonaws.com/dev";
 
     
     // would be cool to get the box working but an alert will do fine for now
