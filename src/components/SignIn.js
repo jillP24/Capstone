@@ -42,33 +42,16 @@ export default function SignIn() {
     const email = data.get('email')
     //const password = data.get('password')
 
-    // instantiate a headers object
-    var myHeaders = new Headers();
-    // add content type header to object
-    myHeaders.append("Content-Type", "application/json");
-    // using built in JSON utility package turn object to string and store in a variable
-    var raw = JSON.stringify({"email":email});
-    // create a JSON object with parameters for API call and store in a variable
-    var requestOptions = {
-        method: 'POST',
-        headers: myHeaders,
-        body: raw,
-        redirect: 'follow'
-    };
-
-    const login_function_url = "https://kxhb14eybf.execute-api.us-west-2.amazonaws.com/dev";
-
     //  JSON.parse(result).body
 
     if(email.includes("coloradocollege")) {
                   // Basic usage
-            console.log("In if statement");
             casClient
               .auth()
-              .then(console.log("Authentication done"))
+              .then(alert("Authentication done"))
               .then(successRes => {
                 console.log(successRes);
-                alert(response.user);
+                alert(successRes.user);
                 
                 // Login user in state / locationStorage ()
                 // eg. loginUser(response.user);
