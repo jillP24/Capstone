@@ -13,6 +13,10 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { render } from 'react-dom';
+import CasClient, { constant } from "react-cas-client";
+let casEndpoint = "cas.coloradocollege.edu";
+let casOptions = { version: constant.CAS_VERSION_2_0};
+let casClient = new CasClient(casEndpoint, casOptions);
 
 
 
@@ -65,6 +69,10 @@ export default function SignIn() {
     .then(result =>  window.location = (JSON.parse(result).body))
     .catch(error => console.log('error', error));
     }
+
+    
+
+
     
 else {
     // alert is working but the text field is not changing in response to the error
@@ -77,6 +85,7 @@ else {
     helperText="Colorado College email required."
   />
 }
+
   };
 
   return (
