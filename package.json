@@ -3,18 +3,20 @@
   "version": "5.0.0",
   "private": true,
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
+    "start": "react-scripts --openssl-legacy-provider start",
+    "build": "react-scripts --openssl-legacy-provider build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
   "dependencies": {
+    "@aws-amplify/ui-react": "^2.1.4",
     "@emotion/react": "latest",
     "@emotion/styled": "latest",
     "@material-ui/core": "^4.12.3",
     "@material-ui/icons": "^4.11.2",
     "@mui/icons-material": "^5.2.0",
     "@mui/material": "latest",
+    "aws-amplify": "^4.3.10",
     "echarts": "^5.2.2",
     "express-cas": "^0.0.8",
     "history": "^5.1.0",
