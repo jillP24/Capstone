@@ -3,13 +3,13 @@
   "version": "5.0.0",
   "private": true,
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
+    "start": "react-scripts --openssl-legacy-provider start",
+    "build":  "react-scripts --openssl-legacy-provider build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
   "dependencies": {
-    "@aws-amplify/ui-react": "^2.1.4",
+    "@aws-amplify/ui-react": "^1.2.5",
     "@emotion/react": "latest",
     "@emotion/styled": "latest",
     "@material-ui/core": "^4.12.3",

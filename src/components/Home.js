@@ -1,98 +1,63 @@
-import { Amplify } from 'aws-amplify';
-import { withAuthenticator } from '@aws-amplify/ui-react';
-import '@aws-amplify/ui-react/styles.css';
-
-import awsExports from '../aws-exports.js';
 import React from 'react';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
-import Box from '@mui/material/Box';
-import Link from '@mui/material/Link';
-import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
-import Typography from '@mui/material/Typography';
-import Container from '@mui/material/Container';
-import Avatar from '@mui/material/Avatar';
-import Button from '@mui/material/Button';
-import CssBaseline from '@mui/material/CssBaseline';
-import TextField from '@mui/material/TextField';
+import '../App.css';
+import Amplify from 'aws-amplify';
+import { AmplifyAuthenticator, AmplifySignIn, AmplifySignOut, AmplifySignUp } from '@aws-amplify/ui-react';
+import { AuthState, onAuthUIStateChange } from '@aws-amplify/ui-components';
+import awsconfig from '../aws-exports';
+
+Amplify.configure(awsconfig);
+
+const formFields =
+  [
+    {
+      type: "email",
+      required: true,
+    },
+    {
+      type: "password",
+      required: true,
+    },
+    {
+      type: "given_name",
+      label: 'First Name',
+      required: true,
+    },
+    {
+      type: "family_name",
+      label: "Last Name",
+      required: true,
+    },
+    {
+      type: "custom:class",
+      label: "Graduating class",
+      required: true,
+      placeholder: "e.g. 2023"
+    }
+  ];
 
 
-function Copyright(props) {
-  return (
-    <Typography variant="body2" color="text.secondary" align="center" {...props}>
-      {'Copyright © '}
-      <Link color="inherit">
-        CollegeConnect
-      </Link>{' '}
-      {new Date().getFullYear()}
-      {'.'}
-    </Typography>
+const App = () => {
+    const [authState, setAuthState] = React.useState();
+    const [user, setUser] = React.useState();
+
+    React.useEffect(() => {
+        return onAuthUIStateChange((nextAuthState, authData) => {
+            setAuthState(nextAuthState);
+            setUser(authData)
+        });
+    }, []);
+
+  return authState === AuthState.SignedIn && user ? (
+      <div className="App">
+          <div>Hello, {user.attributes.given_name}</div>
+          <AmplifySignOut />
+      </div>
+    ) : (
+      <AmplifyAuthenticator usernameAlias="email">
+        <AmplifySignIn headerText="College Connect"/>
+        <AmplifySignUp formFields={formFields} usernameAlias="email" slot="sign-up" />
+      </AmplifyAuthenticator>
   );
 }
 
-Amplify.configure(awsExports);
-
-const theme = createTheme();
-
-const handleSubmit = (event) => {
-  event.preventDefault();
-  const data = new FormData(event.currentTarget);
-  // eslint-disable-next-line no-console
-  const msg = data.get('email')
-}
-
-function App({ signOut, user }) {
-  
-  return (
-    
-    <ThemeProvider theme={theme}>
-      <Container component="main" maxWidth="xs">
-        <CssBaseline />
-    
-        <Box
-          sx={{
-            marginTop: -1,     
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'Center',
-          }}
-        >
-          <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
-            <LockOutlinedIcon />
-          </Avatar>
-          Message Log
-          <Typography component="h1" variant="h5">
-          ※ CollegeConnect ※
-          </Typography>
-          <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 50 }}>
-               
-            <TextField
-              margin="normal"
-              required
-              fullWidth
-              id="email"
-              label="Send Message"
-              name="email"
-              autoComplete="email"
-              autoFocus
-            />
-            <Button
-              type="submit"
-              width = "200px"
-              position= "absolute"
-              variant="contained"
-              
-              sx={{ mt: 0, mb: 0, "float": "right" }}
-            >
-              Send
-            </Button>
-            <button onClick={signOut}>Sign out</button>
-          </Box>
-        </Box>
-        <Copyright sx={{ mt: 8, mb: 4 }} />
-      </Container>
-    </ThemeProvider>
-  );
-
-}
-
-export default withAuthenticator(App);
+export default App;
