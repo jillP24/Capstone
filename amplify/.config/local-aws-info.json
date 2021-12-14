@@ -1,7 +1,7 @@
 {
-    "dev": {
-        "configLevel": "project",
-        "useProfile": false,
-        "awsConfigFilePath": "/Users/Jillyp/.amplify/awscloudformation/uGwP9Sg9UB"
-    }
+  "dev": {
+    "configLevel": "project",
+    "useProfile": false,
+    "awsConfigFilePath": "/Users/Jillyp/.amplify/awscloudformation/n4GCDR4t32"
+  }
 }

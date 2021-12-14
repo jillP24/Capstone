@@ -1,6 +1,6 @@
 {
-  "projectName": "trial",
-  "version": "3.0",
+  "projectName": "Capstone",
+  "version": "3.1",
   "frontend": "javascript",
   "javascript": {
     "framework": "react",
