@@ -3,12 +3,14 @@ import history from 'history.js'
 import { AmplifyAuthenticator, AmplifySignIn, AmplifySignOut, AmplifySignUp } from '@aws-amplify/ui-react';
 import { AuthState, onAuthUIStateChange } from '@aws-amplify/ui-components';
 import awsconfig from '../../../../aws-exports';
-import { Amplify } from 'aws-amplify';
+import { Amplify, Auth } from 'aws-amplify';
 import { withAuthenticator } from '@aws-amplify/ui-react';
 //import '@aws-amplify/ui-react/styles.css';
 import awsExports from '../../../../aws-exports.js';
 import React from 'react';
 //import RootRoutes from './RootRoutes'
+
+import Chatbox from '../../../components/chat-box-2/Chatbox.jsx'
 Amplify.configure(awsExports); 
 
 
@@ -41,6 +43,7 @@ const formFields =
   ];
 
 
+
 const App = () => {
     const [authState, setAuthState] = React.useState();
     const [user, setUser] = React.useState(); 
@@ -51,22 +54,25 @@ const App = () => {
             setUser(authData)
         });
     }, []);
+
     
-  return authState === AuthState.SignedIn && user ? (
-    // redirect to home-page/ dashboard
+  // if user is authenticated, redirect
+   return authState === AuthState.SignedIn && user ? (
       <div className="App">
-          <div>Hello, {user.attributes.given_name}</div>
-          {/* <AmplifySignOut /> */}
-      </div>
-     // history.push('/')
-   // awsconfig.oauth.redirectSignIn = `${window.location.origin}/dashboard/default`
+      {/* //     <div>Hello, {user.attributes.given_name}</div> */}
+              <Chatbox />
+      //     {/* <AmplifySignOut /> */}
+      // </div>
+    // history.push('/')
+    //awsconfig.oauth.redirectSignIn = `${window.location.origin}/dashboard/default`
     //  history.push('/')
      ) : (
+       // else, sign up
       <AmplifyAuthenticator usernameAlias="email">
         <AmplifySignIn headerText="College Connect"/>
         <AmplifySignUp formFields={formFields} usernameAlias="email" slot="sign-up" />
       </AmplifyAuthenticator>
-  );
+   );
 }
 
 export default App;

@@ -151,7 +151,6 @@ const Layout1Topbar = () => {
 
                                         {/* HERE WE CAN GREET EACH USER WITH NAME FROM DATABSE */}
                                         <span>
-
                                             Hi Josh! <strong>{}</strong>
                                         </span>
                                     </Hidden>

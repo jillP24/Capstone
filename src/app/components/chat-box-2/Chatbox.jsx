@@ -31,6 +31,37 @@ const Chatbox = ({ togglePopup }) => {
 
     const classes = useStyles()
 
+
+// ===================================
+
+// call Rest API
+//return value of lambda here
+
+var myHeaders = new Headers();
+    // add content type header to object
+    myHeaders.append("Content-Type", "application/json");
+    // using built in JSON utility package turn object to string and store in a variable
+    
+    // create a JSON object with parameters for API call and store in a variable
+    var requestOptions = {
+        method: 'POST',
+        headers: myHeaders,
+        redirect: 'follow'
+    };
+    
+var variableToStore = 0;
+
+const login_function_url = "https://xox71jh48e.execute-api.us-west-2.amazonaws.com/default";
+
+fetch(login_function_url, requestOptions)
+    .then(response => response.text())
+    .then(result =>  variableToStore= (JSON.parse(result).body))
+    .catch(error => console.log('error', error));
+
+
+console.log(variableToStore);
+
+
 //=======================================
 
     const [msg, setMsg] = useState([]);
