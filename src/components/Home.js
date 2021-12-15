@@ -4,6 +4,9 @@ import Amplify from 'aws-amplify';
 import { AmplifyAuthenticator, AmplifySignIn, AmplifySignOut, AmplifySignUp } from '@aws-amplify/ui-react';
 import { AuthState, onAuthUIStateChange } from '@aws-amplify/ui-components';
 import awsconfig from '../aws-exports';
+import { Widget } from 'react-chat-widget';
+
+import 'react-chat-widget/lib/styles.css';
 
 Amplify.configure(awsconfig);
 
@@ -36,6 +39,12 @@ const formFields =
   ];
 
 
+  const handleNewUserMessage = (newMessage) => {
+    console.log(`New message incoming! ${newMessage}`);
+    // Now send the message throught the backend API
+  };
+
+
 const App = () => {
     const [authState, setAuthState] = React.useState();
     const [user, setUser] = React.useState();
@@ -47,16 +56,25 @@ const App = () => {
         });
     }, []);
 
+
   return authState === AuthState.SignedIn && user ? (
       <div className="App">
-          <div>Hello, {user.attributes.given_name}</div>
-          <AmplifySignOut />
+         <Widget
+        handleNewUserMessage={handleNewUserMessage}
+        title="Colorado College"
+        subtitle="Class of 2023"
+      />
+
+      
+         
       </div>
     ) : (
+      <div className="App">
       <AmplifyAuthenticator usernameAlias="email">
         <AmplifySignIn headerText="College Connect"/>
         <AmplifySignUp formFields={formFields} usernameAlias="email" slot="sign-up" />
       </AmplifyAuthenticator>
+      </div>
   );
 }
 
