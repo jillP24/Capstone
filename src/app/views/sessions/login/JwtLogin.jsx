@@ -68,46 +68,6 @@ const JwtLogin = () => {
         }
     }
 
-    const handleSubmit = (event) => {
-    event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    // eslint-disable-next-line no-console
-    const email1 = data.get('email')
-    // case-insensitive
-    const email = email1.toLowerCase();
-    //const password = data.get('password')
-
-    let substring = "coloradocollege.edu";
-    if (!(email.includes(substring))){
-      // alert is working but the text field is not changing in response to the error
-      alert("Error: Colorado College email required.");
-    }
-
-    // instantiate a headers object
-    var myHeaders = new Headers();
-    // add content type header to object
-    myHeaders.append("Content-Type", "application/json");
-    // using built in JSON utility package turn object to string and store in a variable
-    var raw = JSON.stringify({"email":email});
-    // create a JSON object with parameters for API call and store in a variable
-    var requestOptions = {
-        method: 'POST',
-        headers: myHeaders,
-        body: raw,
-        redirect: 'follow'
-    };
-
-    const login_function_url = " https://kxhb14eybf.execute-api.us-west-2.amazonaws.com/dev";
-
-    // JSON.parse(result).body
-    // export default List;
-    // make API call with parameters and use promises to get response
-    fetch(login_function_url, requestOptions)
-    .then(response => response.text())
-    .then(result =>  window.location = (JSON.parse(result).body))
-    .catch(error => console.log('error', error));
-
-  };
 
   return (
     <div
