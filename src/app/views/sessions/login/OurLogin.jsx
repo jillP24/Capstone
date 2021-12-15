@@ -11,6 +11,7 @@ import React from 'react';
 //import RootRoutes from './RootRoutes'
 
 import Chatbox from '../../../components/chat-box-2/Chatbox.jsx'
+import Layout1Topbar from '../../../components/MatxLayout/Layout1/Layout1Topbar.jsx'
 Amplify.configure(awsExports); 
 
 
@@ -60,6 +61,7 @@ const App = () => {
    return authState === AuthState.SignedIn && user ? (
       <div className="App">
       {/* //     <div>Hello, {user.attributes.given_name}</div> */}
+      <Layout1Topbar />
               <Chatbox />
       //     {/* <AmplifySignOut /> */}
       // </div>
