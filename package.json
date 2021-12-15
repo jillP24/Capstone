@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "start": "react-scripts --openssl-legacy-provider start",
-    "build":  "react-scripts --openssl-legacy-provider build",
+    "build": "react-scripts --openssl-legacy-provider build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
@@ -20,8 +20,10 @@
     "echarts": "^5.2.2",
     "express-cas": "^0.0.8",
     "history": "^5.1.0",
+    "rc-menu": "^9.0.14",
     "react": "latest",
     "react-cas-client": "^1.1.0",
+    "react-chat-widget": "^3.1.4",
     "react-dom": "latest",
     "react-native": "^0.66.3",
     "react-router-dom": "^5.2.0",
