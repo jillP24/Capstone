@@ -32,39 +32,13 @@ const Chatbox = ({ togglePopup }) => {
     const classes = useStyles()
 
 
-// ===================================
 
-// call Rest API
-//return value of lambda here
-
-var myHeaders = new Headers();
-    // add content type header to object
-    myHeaders.append("Content-Type", "application/json");
-    // using built in JSON utility package turn object to string and store in a variable
-    
-    // create a JSON object with parameters for API call and store in a variable
-    var requestOptions = {
-        method: 'POST',
-        headers: myHeaders,
-        redirect: 'follow'
-    };
-    
-var variableToStore = 0;
-
-const login_function_url = "https://xox71jh48e.execute-api.us-west-2.amazonaws.com/default";
-
-fetch(login_function_url, requestOptions)
-    .then(response => response.text())
-    .then(result =>  variableToStore= (JSON.parse(result).body))
-    .catch(error => console.log('error', error));
-
-
-console.log(variableToStore);
 
 
 //=======================================
 
     const [msg, setMsg] = useState([]);
+    const [msg_len, setMsg_len] = useState([]);
    
     const headers = {
         'Content-Type' : 'application/graphq',
@@ -81,16 +55,33 @@ console.log(variableToStore);
         username
       }}   }`}) ;
 
+      const fetchAllMsg =
+    JSON.stringify({ "query": `query listChatPlatforms { listChatPlatforms
+    { items {
+        grad_class
+        message_number
+        message
+        username
+      }}   }`}) ;
+
+
+
     useEffect( () => {
         const fetchData = async () => {
             const q_result = await axios.post('https://ibzxw22rhvdhvgqu7n7v6yrlcq.appsync-api.us-west-2.amazonaws.com/graphql', fetchUser, {
                 headers: headers
         }
     );
+    
+    const all_q_result = await axios.post('https://ibzxw22rhvdhvgqu7n7v6yrlcq.appsync-api.us-west-2.amazonaws.com/graphql', fetchAllMsg, {
+                headers: headers
+        }
+    );
     //update state component
     const result = q_result.data.data.listChatPlatforms.items;
+    const all_result = all_q_result.data.data.listChatPlatforms.items;
     //listChatPlatforms
-  
+    setMsg_len(all_result.length);
     setMsg(result);
    
     };
@@ -112,14 +103,14 @@ console.log(variableToStore);
             if (tempMessage !== '') {
                
 
-                console.log("here");
                 const header = {
                     'Content-Type' : 'application/graphq',
                     'x-api-key' : 'da2-kkfmpdswindbrmmvcfmcimxlqa'
                   }
-                 
+                 var msg_id = msg_len +1;
+                 console.log(msg_id);
                  const fetchUsers =
-                JSON.stringify({ "query": `mutation myMutation { createChatPlatform(input: {grad_class: \"2023\", message: \"${tempMessage}\", message_number: 4, username: \"random\"}     )
+                JSON.stringify({ "query": `mutation myMutation { createChatPlatform(input: {grad_class: \"2023\", message: \"${tempMessage}\", message_number: ${msg_id}, username: \"random\"}     )
                 {
                     grad_class
                     message_number
@@ -305,8 +296,8 @@ console.log(variableToStore);
                     /> */}
                     {/* STATUS ONLINE */}
                     <div className="ml-3">
-                        <h5 className="mt-0 mb-3px text-14">Nick</h5>
-                        <span className="text-muted font-medium">Active</span>
+                        <h5 className="mt-0 mb-3px text-14">2022 Group Chat</h5>
+                      
                     </div>
                 </div>
                 <IconButton onClick={togglePopup}>
@@ -326,8 +317,8 @@ console.log(variableToStore);
                     >
                         {currentUserId !== item.username && (
                             <Avatar src={item.avatar} />
-                        )}
-                        <div className="ml-3">
+                        )} 
+                        <div className="ml-3"> 
                             {currentUserId !== item.contactId && (
                                 <h5 className="mt-0 mb-1 text-14">
                                     {item.username}
@@ -340,10 +331,8 @@ console.log(variableToStore);
                                 )}
                             >
                                 {item.message}
-                            </div>
-                            <span className="text-muted text-13 font-medium">
-                                1 minute ago
-                            </span>
+                            </div> 
+                            
                         </div>
                     </div>
                 ))}

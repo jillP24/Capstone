@@ -16,6 +16,7 @@ import clsx from 'clsx'
 import useAuth from 'app/hooks/useAuth'
 import useSettings from 'app/hooks/useSettings'
 import { NotificationProvider } from 'app/contexts/NotificationContext'
+import OurLogin from 'app/views/sessions/login/OurLogin'
 
 // TOP BAR 
 // MENU DROPDOWN FROM TOP RIGHT OF THE BAR
@@ -65,7 +66,8 @@ const useStyles = makeStyles(({ palette, ...theme }) => ({
     },
 }))
 
-const Layout1Topbar = () => {
+const Layout1Topbar = (username) => {
+    alert(username)
     const theme = useTheme()
     const classes = useStyles()
     const { settings, updateSettings } = useSettings()
@@ -109,7 +111,7 @@ const Layout1Topbar = () => {
                             onClick={handleSidebarToggle}
                             className="hide-on-pc"
                         >
-                            <Icon>menu</Icon>
+                            {/* <Icon>menu</Icon> */}
                         </IconButton>
                      
                         {/* <div className="hide-on-mobile">
@@ -129,7 +131,7 @@ const Layout1Topbar = () => {
                     <div>
                     {/* replace year with year from database */}
                     <Hidden xsDown>
-                        <span>
+                        <span> 
                         Welcome to Colorado College Class of 2022 GroupChat!<strong>{}</strong>
                         </span>
                     </Hidden>
@@ -151,7 +153,7 @@ const Layout1Topbar = () => {
 
                                         {/* HERE WE CAN GREET EACH USER WITH NAME FROM DATABSE */}
                                         <span>
-                                            Hi Josh! <strong>{}</strong>
+                                            Hi ! <strong>{}</strong>
                                         </span>
                                     </Hidden>
                                  

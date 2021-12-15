@@ -26,9 +26,9 @@ const formFields =
       required: true,
     },
     {
-      type: "given_name",
+      type: "given_name", 
       label: 'First Name',
-      required: true,
+      required: true, 
     },
     {
       type: "family_name",
@@ -43,38 +43,35 @@ const formFields =
     }
   ];
 
+function App() {
+  const [authState, setAuthState] = React.useState();
+  const [user, setUser] = React.useState();
+
+  React.useEffect(() => {
+    return onAuthUIStateChange((nextAuthState, authData) => {
+      setAuthState(nextAuthState);
+      setUser(authData);
+    });
+  }, []);
 
 
-const App = () => {
-    const [authState, setAuthState] = React.useState();
-    const [user, setUser] = React.useState(); 
-
-    React.useEffect(() => {
-        return onAuthUIStateChange((nextAuthState, authData) => {
-            setAuthState(nextAuthState);
-            setUser(authData)
-        });
-    }, []);
-
-    
   // if user is authenticated, redirect
-   return authState === AuthState.SignedIn && user ? (
-      <div className="App">
-      {/* //     <div>Hello, {user.attributes.given_name}</div> */}
+  return authState === AuthState.SignedIn && user ? (
+    <div className="App">
       <Layout1Topbar />
-              <Chatbox />
+      <Chatbox />
       //     {/* <AmplifySignOut /> */}
       // </div>
     // history.push('/')
     //awsconfig.oauth.redirectSignIn = `${window.location.origin}/dashboard/default`
     //  history.push('/')
-     ) : (
-       // else, sign up
-      <AmplifyAuthenticator usernameAlias="email">
-        <AmplifySignIn headerText="College Connect"/>
-        <AmplifySignUp formFields={formFields} usernameAlias="email" slot="sign-up" />
-      </AmplifyAuthenticator>
-   );
+  ) : (
+    // else, sign up 
+    <AmplifyAuthenticator usernameAlias="email">
+      <AmplifySignIn headerText="College Connect" />
+      <AmplifySignUp formFields={formFields} usernameAlias="email" slot="sign-up" />
+    </AmplifyAuthenticator>
+  );
 }
 
 export default App;  
