@@ -110,7 +110,7 @@ const Chatbox = (props) => {
 
     // ================================
     const sendMessageOnEnter = (event) => {
-        if (event.key === 'Enter' && !event.shiftKey) {
+        if (event.key === 'Enter' && !event.shiftKey || event.key === event.IconButton) {
             
             let tempMessage = message.trim()
             
@@ -182,104 +182,6 @@ const Chatbox = (props) => {
             })
         }
     }, [chatBottomRef])
-
-    useEffect(() => {
-        if (isAlive) {
-            setMessageList([
-                {
-                    contactId: '323sa680b3249760ea21rt47',
-                    text:
-                        'Good morning',
-                    
-                    id: '323sa680b3249760ea21rt47',
-                    name: 'Jill',
-                   
-                    status: 'online',
-                    mood: '',
-                },
-                {
-                    contactId: '7863a6802ez0e277a0f98534',
-                    text:
-                        'How are you?',
-                    time: '2018-02-10T08:45:28.291Z',
-                    id: '7863a6802ez0e277a0f98534',
-                    name: 'Nick',
-                  
-                    status: 'online',
-                    mood: '',
-                },
-                {
-                    contactId: '323sa680b3249760ea21rt47',
-                    text: 'Good, thanks.',
-                    time: '2018-02-10T08:45:28.291Z',
-                    id: '323sa680b3249760ea21rt47',
-                    name: 'Jill',
-                   
-                    status: 'online',
-                    mood: '',
-                },
-               {
-                    contactId: '7863a6802ez0e277a0f98534',
-                    text: 'Don’t feel bad. It happens to a lot of us',
-                    time: '2018-02-10T08:45:28.291Z',
-                    id: '7863a6802ez0e277a0f98534',
-                    name: 'Nick',
-                  
-                    status: 'online',
-                    mood: '',
-                },
-                {
-                    contactId: '323sa680b3249760ea21rt47',
-                    text:
-                        'Do you ever find yourself falling into the “discount trap?”',
-                    time: '2018-02-10T08:45:28.291Z',
-                    id: '323sa680b3249760ea21rt47',
-                    name: 'Jill',
-                   
-                    status: 'online',
-                    mood: '',
-                },
-                {
-                    contactId: '7863a6802ez0e277a0f98534',
-                    text:
-                        'Giving away your knowledge or product just to gain clients?',
-                    time: '2018-02-10T08:45:28.291Z',
-                    id: '7863a6802ez0e277a0f98534',
-                    name: 'Nick',
-                   
-                    status: 'online',
-                    mood: '',
-                },
-                {
-                    contactId: '323sa680b3249760ea21rt47',
-                    text: 'Yes',
-                    time: '2018-02-10T08:45:28.291Z',
-                    id: '323sa680b3249760ea21rt47',
-                    name: 'Jill',
-                    
-                    status: 'online',
-                    mood: '',
-                },
-                {
-                    contactId: '7863a6802ez0e277a0f98534',
-                    text: 'Don’t feel bad. It happens to a lot of us',
-                    time: '2018-02-10T08:45:28.291Z',
-                    id: '7863a6802ez0e277a0f98534',
-                    name: 'Nick',
-                    
-                    status: 'online',
-                    mood: '',
-                }, 
-            ])
-        }
-        // getChatRoomByContactId(currentUserId, "323sa680b3249760ea21rt47").then(
-        //   ({ data }) => {
-        //     if (isAlive) {
-        //       setMessageList(data?.messageList);
-        //     }
-        //   }
-        // );
-    }, [isAlive])
 
     useEffect(() => {
         scrollToBottom()
@@ -371,9 +273,11 @@ const Chatbox = (props) => {
                         disableUnderline: true,
                         endAdornment: (
                             <div className="flex">
-                                <IconButton size="small">
+                                <IconButton size="small" value={message}
+                                onChange={(e) => setMessage(e.target.value)} 
+                                onClick={sendMessageOnEnter}> Send
                                     {/* send button needs to actually work */}
-                                    <Icon className="text-body">send_button</Icon>
+                                    {/* <Icon className="text-body"> send_button</Icon> */}
                                 </IconButton>
                             </div>
                         ),
