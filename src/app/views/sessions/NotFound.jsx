@@ -11,13 +11,14 @@ const NotFound = () => {
                     src="/assets/images/illustrations/404.svg"
                     alt=""
                 />
+                {/* want to redirect back to whichever route holds our homepage */}
                 <Link to="/">
                     <Button
                         className="capitalize"
                         variant="contained"
                         color="primary"
                     >
-                        Back to Dashboard
+                        Back to Home
                     </Button>
                 </Link>
             </div>

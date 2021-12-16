@@ -12,6 +12,7 @@ import React from 'react';
 
 import Chatbox from '../../../components/chat-box-2/Chatbox.jsx'
 import Layout1Topbar from '../../../components/MatxLayout/Layout1/Layout1Topbar.jsx'
+import Layout1 from '../../../components/MatxLayout/Layout1/Layout1.jsx'
 Amplify.configure(awsExports); 
 
 
@@ -58,6 +59,7 @@ function App() {
   // if user is authenticated, redirect
   return authState === AuthState.SignedIn && user ? (
     <div className="App">
+      
       <Layout1Topbar username = {user.attributes.given_name} class = {user.attributes["custom:class"]}/>
       <Chatbox username = {user.attributes.given_name} last = {user.attributes.family_name} class = {user.attributes["custom:class"]}/>
            {/* <AmplifySignOut /> */}

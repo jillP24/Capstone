@@ -20,6 +20,7 @@ const redirectRoute = [
     },
 ]
 
+// interesting behavior when this route is changed to '/session/signin'
 const errorRoute = [
     {
         component: () => <Redirect to="/session/404" />,

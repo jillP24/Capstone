@@ -115,8 +115,7 @@ const Chatbox = (props) => {
             let tempMessage = message.trim()
             
             if (tempMessage !== '') {
-
-               
+    
                 console.log(year)
                 const header = {
                     'Content-Type' : 'application/graphq',
@@ -139,9 +138,6 @@ const Chatbox = (props) => {
                 );
                
                 
-
-
-
                 let tempList = [...messageList]
                 //console.log(tempList);
                 

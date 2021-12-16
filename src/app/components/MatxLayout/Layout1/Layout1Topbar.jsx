@@ -17,6 +17,8 @@ import useAuth from 'app/hooks/useAuth'
 import useSettings from 'app/hooks/useSettings'
 import { NotificationProvider } from 'app/contexts/NotificationContext'
 import OurLogin from 'app/views/sessions/login/OurLogin'
+import { AmplifyAuthenticator, AmplifySignIn, AmplifySignOut, AmplifySignUp } from '@aws-amplify/ui-react';
+import { Amplify, Auth } from 'aws-amplify';
 
 // TOP BAR 
 // MENU DROPDOWN FROM TOP RIGHT OF THE BAR
@@ -152,7 +154,7 @@ const Layout1Topbar = (props) => {
 
                                         {/* HERE WE CAN GREET EACH USER WITH NAME FROM DATABSE */}
                                         <span>
-                                            <strong> Hi, {props.username} !</strong>
+                                            <strong> Hi, {props.username}!</strong>
                                         </span>
                                     </Hidden>
                                  
@@ -179,11 +181,13 @@ const Layout1Topbar = (props) => {
                                 <span className="pl-4"> Settings </span>
                             </MenuItem> */}
                             <MenuItem
-                                onClick={logout}
+                                //onClick={logout}
+                                onClick={() => Auth.signOut()}
                                 className={classes.menuItem}
                             >
-                                <Icon> power_settings_new </Icon>
-                                <span className="pl-4"> Logout </span>
+                                 <Icon> power_settings_new </Icon>
+                                 <AmplifySignOut />
+                                {/* <span className="pl-4"> Logout </span> */}
                             </MenuItem>
                         </MatxMenu>
                     </div>
