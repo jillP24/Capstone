@@ -89,15 +89,20 @@ const Chatbox = (props) => {
         }
     );
     //update state component
-    const result = q_result.data.data.listChatPlatforms.items;
+    try
+{    const result = q_result.data.data.listChatPlatforms.items;
     const all_result = all_q_result.data.data.listChatPlatforms.items;
     //listChatPlatforms
+    
     setMsg_len(all_result.length);
-    
-    result.sort((a,b) => (a.message_number > b.message_number) ? 1 : -1);
-    
+    result.sort((a,b) => (a.message_number > b.message_number) ? 1 : -1); 
     setMsg(result);
-   
+} catch (err){
+    console.log(q_result.data.data.listChatPlatforms)
+    console.log(all_q_result.data.data.listChatPlatforms)
+    console.log(err)
+}
+
     };
     fetchData();
 });
@@ -275,9 +280,9 @@ const Chatbox = (props) => {
                             <div className="flex">
                                 <IconButton size="small" value={message}
                                 onChange={(e) => setMessage(e.target.value)} 
-                                onClick={sendMessageOnEnter}> Send
+                                onClick={sendMessageOnEnter}> 
                                     {/* send button needs to actually work */}
-                                    {/* <Icon className="text-body"> send_button</Icon> */}
+                                    <Icon className="text-body"> send_button</Icon>
                                 </IconButton>
                             </div>
                         ),
@@ -287,7 +292,7 @@ const Chatbox = (props) => {
                     onChange={(e) => setMessage(e.target.value)}
                     onKeyUp={sendMessageOnEnter}
                     
-                    
+                     
                 />
             </div>
         </div>
