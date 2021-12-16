@@ -58,13 +58,11 @@ function App() {
   // if user is authenticated, redirect
   return authState === AuthState.SignedIn && user ? (
     <div className="App">
-      <Layout1Topbar />
-      <Chatbox />
-      //     {/* <AmplifySignOut /> */}
-      // </div>
-    // history.push('/')
-    //awsconfig.oauth.redirectSignIn = `${window.location.origin}/dashboard/default`
-    //  history.push('/')
+      <Layout1Topbar username = {user.attributes.given_name} class = {user.attributes["custom:class"]}/>
+      <Chatbox username = {user.attributes.given_name} class = {user.attributes["custom:class"]}/>
+           {/* <AmplifySignOut /> */}
+       </div>
+  
   ) : (
     // else, sign up 
     <AmplifyAuthenticator usernameAlias="email">

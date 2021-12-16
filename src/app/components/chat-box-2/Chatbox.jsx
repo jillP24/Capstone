@@ -9,6 +9,9 @@ import axios from 'axios'
 
 // THIS IS THE MESSAGING FILE
 
+var year = 0
+var username = ''
+
 const useStyles = makeStyles(({ palette, ...theme }) => ({
     lightBG: {
         background: 'rgba(var(--body), 0.03)',
@@ -21,7 +24,8 @@ const useStyles = makeStyles(({ palette, ...theme }) => ({
 // for previewing bot message
 const globalMessageList = []
 
-const Chatbox = ({ togglePopup }) => {
+
+const Chatbox = (props) => {
     const [isAlive, setIsAlive] = useState(true)
     const [message, setMessage] = useState('')
     const [messageList, setMessageList] = useState([])
@@ -44,10 +48,13 @@ const Chatbox = ({ togglePopup }) => {
         'Content-Type' : 'application/graphq',
         'x-api-key' : 'da2-kkfmpdswindbrmmvcfmcimxlqa'
       }
-      var year = "2023";
+
+      year = props.class
+      username = props.username
+      
      
     const fetchUser =
-    JSON.stringify({ "query": `query listChatPlatforms { listChatPlatforms(filter: {grad_class: {eq: \"2023\" }})
+    JSON.stringify({ "query": `query listChatPlatforms { listChatPlatforms(filter: {grad_class: {eq: \"${year}\" }})
     { items {
         grad_class
         message_number
@@ -82,6 +89,9 @@ const Chatbox = ({ togglePopup }) => {
     const all_result = all_q_result.data.data.listChatPlatforms.items;
     //listChatPlatforms
     setMsg_len(all_result.length);
+    
+    result.sort((a,b) => (a.message_number > b.message_number) ? 1 : -1);
+    
     setMsg(result);
    
     };
@@ -101,8 +111,9 @@ const Chatbox = ({ togglePopup }) => {
             let tempMessage = message.trim()
             
             if (tempMessage !== '') {
-               
 
+               
+                console.log(year)
                 const header = {
                     'Content-Type' : 'application/graphq',
                     'x-api-key' : 'da2-kkfmpdswindbrmmvcfmcimxlqa'
@@ -110,7 +121,7 @@ const Chatbox = ({ togglePopup }) => {
                  var msg_id = msg_len +1;
                  console.log(msg_id);
                  const fetchUsers =
-                JSON.stringify({ "query": `mutation myMutation { createChatPlatform(input: {grad_class: \"2023\", message: \"${tempMessage}\", message_number: ${msg_id}, username: \"random\"}     )
+                JSON.stringify({ "query": `mutation myMutation { createChatPlatform(input: {grad_class: \"${year}\", message: \"${tempMessage}\", message_number: ${msg_id}, username: \"${username}\"}     )
                 {
                     grad_class
                     message_number
@@ -124,12 +135,6 @@ const Chatbox = ({ togglePopup }) => {
                 );
                
                 
-
-
-
-
-
-
 
 
 
@@ -295,16 +300,16 @@ const Chatbox = ({ togglePopup }) => {
                         status="online"
                     /> */}
                     {/* STATUS ONLINE */}
-                    <div className="ml-3">
-                        <h5 className="mt-0 mb-3px text-14">2022 Group Chat</h5>
+                    {/* <div className="ml-3">
+                        <h5 className="mt-0 mb-3px text-14"> Grou2022p Chat</h5>
                       
-                    </div>
+                    </div> */}
                 </div>
-                <IconButton onClick={togglePopup}>
+                {/* <IconButton >
                     <Icon className="text-body" fontSize="small">
                         clear
                     </Icon>
-                </IconButton>
+                </IconButton> */}
             </div>
             <ScrollBar className="flex-grow" id="chat-scroll">
                 {msg.map((item, ind) => (

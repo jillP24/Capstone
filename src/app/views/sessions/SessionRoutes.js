@@ -14,7 +14,7 @@ const sessionRoutes = [
     { 
         path: '/session/signin',
         // change this component here from "JwtLogin" to "OurLogin" 
-        component: JwtLogin,
+        component: OurLogin,
     },
     {
         path: '/session/forgot-password',

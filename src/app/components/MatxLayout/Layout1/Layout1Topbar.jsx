@@ -30,7 +30,7 @@ const useStyles = makeStyles(({ palette, ...theme }) => ({
             'linear-gradient(180deg, rgba(255, 255, 255, 0.95) 44%, rgba(247, 247, 247, 0.4) 50%, rgba(255, 255, 255, 0))',
 
         '& .topbar-hold': {
-            backgroundColor: palette.primary.main,
+            backgroundColor: palette.primary.light,
             height: 80,
             paddingLeft: 18,
             paddingRight: 20,
@@ -66,8 +66,7 @@ const useStyles = makeStyles(({ palette, ...theme }) => ({
     },
 }))
 
-const Layout1Topbar = (username) => {
-    alert(username)
+const Layout1Topbar = (props) => {
     const theme = useTheme()
     const classes = useStyles()
     const { settings, updateSettings } = useSettings()
@@ -132,7 +131,7 @@ const Layout1Topbar = (username) => {
                     {/* replace year with year from database */}
                     <Hidden xsDown>
                         <span> 
-                        Welcome to Colorado College Class of 2022 GroupChat!<strong>{}</strong>
+                        <strong> Welcome to Colorado College Class of {props.class} GroupChat!</strong>
                         </span>
                     </Hidden>
                     </div>
@@ -153,7 +152,7 @@ const Layout1Topbar = (username) => {
 
                                         {/* HERE WE CAN GREET EACH USER WITH NAME FROM DATABSE */}
                                         <span>
-                                            Hi ! <strong>{}</strong>
+                                            <strong> Hi, {props.username} !</strong>
                                         </span>
                                     </Hidden>
                                  
