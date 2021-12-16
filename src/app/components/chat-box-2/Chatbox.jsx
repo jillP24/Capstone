@@ -10,6 +10,7 @@ import axios from 'axios'
 // THIS IS THE MESSAGING FILE
 
 var year = 0
+var firstname = ''
 var username = ''
 
 const useStyles = makeStyles(({ palette, ...theme }) => ({
@@ -50,7 +51,10 @@ const Chatbox = (props) => {
       }
 
       year = props.class
-      username = props.username
+      firstname = props.username
+      username = firstname.concat(' ', props.last)
+      
+
       
      
     const fetchUser =

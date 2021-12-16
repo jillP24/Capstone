@@ -59,7 +59,7 @@ function App() {
   return authState === AuthState.SignedIn && user ? (
     <div className="App">
       <Layout1Topbar username = {user.attributes.given_name} class = {user.attributes["custom:class"]}/>
-      <Chatbox username = {user.attributes.given_name} class = {user.attributes["custom:class"]}/>
+      <Chatbox username = {user.attributes.given_name} last = {user.attributes.family_name} class = {user.attributes["custom:class"]}/>
            {/* <AmplifySignOut /> */}
        </div>
   
