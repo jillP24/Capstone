@@ -64,12 +64,14 @@ const App = () => {
         title="Colorado College"
         subtitle="Class of 2023"
       />
+      <AmplifySignOut />
 
-      
+
          
       </div>
     ) : (
-      <div className="App">
+      <div className="App"> 
+        <img src="logo_transparent.png" alt="College Connect logo"/>
       <AmplifyAuthenticator usernameAlias="email">
         <AmplifySignIn headerText="College Connect"/>
         <AmplifySignUp formFields={formFields} usernameAlias="email" slot="sign-up" />
