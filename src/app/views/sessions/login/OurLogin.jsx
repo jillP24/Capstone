@@ -11,6 +11,7 @@ import React from 'react';
 import Chatbox from '../../../components/chat-box-2/Chatbox.jsx'
 import Layout1Topbar from '../../../components/MatxLayout/Layout1/Layout1Topbar.jsx'
 import './App.css'
+import { isTargetNameAssociation } from '@aws-amplify/datastore';
 Amplify.configure(awsExports); 
 
 
@@ -50,6 +51,7 @@ function App() {
     return onAuthUIStateChange((nextAuthState, authData) => {
       setAuthState(nextAuthState);
       setUser(authData);
+      
     });
   }, []); 
 

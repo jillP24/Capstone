@@ -143,14 +143,41 @@ const Chatbox = (props) => {
                 );
                
                 
+                let tempList = [...messageList]
+                //console.log(tempList);
+                
+                let messageObject = {
+                    text: tempMessage,
+                    contactId: currentUserId,
+                }
+
+                
+                tempList.push(messageObject)
+                globalMessageList.push(messageObject)
+                if (isAlive) setMessageList(tempList)
+                dummyReply()
             }
-            
+            setMessage('')
         }
     }
 
      // ================================
 
+    const dummyReply = async () => {
+        setTimeout(() => {
+            let tempList = [...messageList]
+            let messageObject = {
+                text: 'Good to hear from you. enjoy!!!',
+                contactId: 'opponents contact id',
+                avatar: '/assets/images/faces/13.jpg',
+                name: 'Frank Powell',
+            }
 
+            tempList.push(messageObject)
+            globalMessageList.push(messageObject)
+            if (isAlive) setMessageList(globalMessageList)
+        }, 2000)
+    }
 
     const scrollToBottom = useCallback(() => {
         if (chatBottomRef) {
