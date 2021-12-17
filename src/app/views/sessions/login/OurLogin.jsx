@@ -8,11 +8,9 @@ import { withAuthenticator } from '@aws-amplify/ui-react';
 //import '@aws-amplify/ui-react/styles.css';
 import awsExports from '../../../../aws-exports.js';
 import React from 'react';
-//import RootRoutes from './RootRoutes'
-
 import Chatbox from '../../../components/chat-box-2/Chatbox.jsx'
 import Layout1Topbar from '../../../components/MatxLayout/Layout1/Layout1Topbar.jsx'
-import Layout1 from '../../../components/MatxLayout/Layout1/Layout1.jsx'
+import './App.css'
 Amplify.configure(awsExports); 
 
 
@@ -53,8 +51,7 @@ function App() {
       setAuthState(nextAuthState);
       setUser(authData);
     });
-  }, []);
-
+  }, []); 
 
   // if user is authenticated, redirect
   return authState === AuthState.SignedIn && user ? (
@@ -66,11 +63,14 @@ function App() {
        </div>
   
   ) : (
-    // else, sign up 
+     // else, sign up 
+    <div className="App">
     <AmplifyAuthenticator usernameAlias="email">
-      <AmplifySignIn headerText="College Connect" />
-      <AmplifySignUp formFields={formFields} usernameAlias="email" slot="sign-up" />
+      <AmplifySignIn headerText="CollegeConnect" />
+      <AmplifySignUp formFields={formFields} usernameAlias="email" slot="sign-up" />    
+      {/* <a href="javascript:location.reload(true)">Refresh Page </a> */}
     </AmplifyAuthenticator>
+    </div>
   );
 }
 

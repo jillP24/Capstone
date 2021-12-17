@@ -4,7 +4,7 @@ import {
     IconButton,
     MenuItem,
     Avatar,
-    useMediaQuery,
+    useMediaQuery, 
     Hidden,
 } from '@material-ui/core'
 import { MatxMenu, MatxSearchBox } from 'app/components'
@@ -32,7 +32,7 @@ const useStyles = makeStyles(({ palette, ...theme }) => ({
             'linear-gradient(180deg, rgba(255, 255, 255, 0.95) 44%, rgba(247, 247, 247, 0.4) 50%, rgba(255, 255, 255, 0))',
 
         '& .topbar-hold': {
-            backgroundColor: palette.primary.light,
+            backgroundColor: palette.primary.contrastText,
             height: 80,
             paddingLeft: 18,
             paddingRight: 20,
@@ -58,7 +58,7 @@ const useStyles = makeStyles(({ palette, ...theme }) => ({
         padding: 4,
         '& span': {
             margin: '0 8px',
-            // color: palette.text.secondary
+            // color: palette.text.primary
         },
     },
     menuItem: {
@@ -185,7 +185,7 @@ const Layout1Topbar = (props) => {
                                 onClick={() => Auth.signOut()}
                                 className={classes.menuItem}
                             >
-                                 <Icon> power_settings_new </Icon>
+                                 {/* <Icon> power_settings_new </Icon> */}
                                  <AmplifySignOut />
                                 {/* <span className="pl-4"> Logout </span> */}
                             </MenuItem>
