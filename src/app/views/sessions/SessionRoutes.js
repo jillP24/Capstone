@@ -11,7 +11,7 @@ const sessionRoutes = [
     //     component: JwtRegister,
     // },  
     { 
-        path: '/session/signin',
+        path: '/',
         // change this component here from "JwtLogin" to "OurLogin" 
         component: OurLogin,
     },
