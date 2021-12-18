@@ -133,7 +133,7 @@ const Layout1Topbar = (props) => {
                     {/* replace year with year from database */}
                     <Hidden xsDown>
                         <span> 
-                        <strong> Welcome to Colorado College Class of {props.class} GroupChat!</strong>
+                        <strong> Colorado College Class of {props.class} GroupChat!</strong>
                         </span>
                     </Hidden>
                     </div>

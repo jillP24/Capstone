@@ -48,15 +48,18 @@ function App() {
   const [user, setUser] = React.useState();
 
   React.useEffect(() => {
+
+
     return onAuthUIStateChange((nextAuthState, authData) => {
-      setAuthState(nextAuthState);
       setUser(authData);
-      
+      setAuthState(nextAuthState);
     });
   }, []); 
 
+
   // if user is authenticated, redirect
   return authState === AuthState.SignedIn && user ? (
+
     <div className="App">
       
       <Layout1Topbar username = {user.attributes.given_name} class = {user.attributes["custom:class"]}/>
