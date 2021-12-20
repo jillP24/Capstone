@@ -76,11 +76,11 @@ const Layout1 = () => {
 
     return (
         <div className={clsx('bg-default', layoutClasses)}>
-            {showSidenav && sidenavMode !== 'close' && (
+            {/* {showSidenav && sidenavMode !== 'close' && (
                 <SidenavTheme>
                     <Layout1Sidenav />
                 </SidenavTheme>
-            )}
+            )} */}
 
             <div
                 className={clsx(
@@ -88,11 +88,11 @@ const Layout1 = () => {
                     classes.contentWrap
                 )}
             >
-                {layout1Settings.topbar.show && layout1Settings.topbar.fixed && (
+                {/* {layout1Settings.topbar.show && layout1Settings.topbar.fixed && (
                     <ThemeProvider theme={topbarTheme}>
                         <Layout1Topbar fixed={true} className="elevation-z8" />
                     </ThemeProvider>
-                )}
+                )} */}
 
                 {settings.perfectScrollbar && (
                     <Scrollbar className="flex-grow flex-column relative h-full">
@@ -103,7 +103,7 @@ const Layout1 = () => {
                                 </ThemeProvider>
                             )}
                         <div className="relative flex-grow">
-                            <MatxSuspense>{renderRoutes(routes)}</MatxSuspense>
+                            {/* <MatxSuspense>{renderRoutes(routes)}</MatxSuspense> */}
                         </div>
                         {settings.footer.show && !settings.footer.fixed && (
                             <Footer />
@@ -113,14 +113,14 @@ const Layout1 = () => {
 
                 {!settings.perfectScrollbar && (
                     <div className="flex-grow flex-column relative h-full scroll-y">
-                        {layout1Settings.topbar.show &&
+                        {/* {layout1Settings.topbar.show &&
                             !layout1Settings.topbar.fixed && (
                                 <ThemeProvider theme={topbarTheme}>
                                     <Layout1Topbar />
                                 </ThemeProvider>
-                            )}
+                            )} */}
                         <div className="relative flex-grow">
-                            <MatxSuspense>{renderRoutes(routes)}</MatxSuspense>
+                            {/* <MatxSuspense>{renderRoutes(routes)}</MatxSuspense> */}
                         </div>
                         {settings.footer.show && !settings.footer.fixed && (
                             <Footer />
@@ -130,7 +130,8 @@ const Layout1 = () => {
 
                 {settings.footer.show && settings.footer.fixed && <Footer />}
             </div>
-            {settings.secondarySidebar.show && <SecondarySidebar />}
+            {/* THIS IS THE FIXED SETTINGS ICON */}
+            {/* {settings.secondarySidebar.show && <SecondarySidebar />} */}
         </div>
     )
 }

@@ -10,6 +10,8 @@ import awsExports from '../../../../aws-exports.js';
 import React from 'react';
 import Chatbox from '../../../components/chat-box-2/Chatbox.jsx'
 import Layout1Topbar from '../../../components/MatxLayout/Layout1/Layout1Topbar.jsx'
+import Layout1 from '../../../components/MatxLayout/Layout1/Layout1.jsx'
+import Footer from '../../../components/Footer/Footer.jsx'
 import './App.css'
 import { isTargetNameAssociation } from '@aws-amplify/datastore';
 Amplify.configure(awsExports); 
@@ -61,11 +63,14 @@ function App() {
   return authState === AuthState.SignedIn && user ? (
 
     <div className="App">
-      
-      <Layout1Topbar username = {user.attributes.given_name} class = {user.attributes["custom:class"]}/>
-      <Chatbox username = {user.attributes.given_name} last = {user.attributes.family_name} class = {user.attributes["custom:class"]}/>
-           {/* <AmplifySignOut /> */}
-       </div>
+
+      {/* top-bar is good and fixed correctly on the screen */}
+      <Layout1Topbar position="fixed" username = {user.attributes.given_name} class = {user.attributes["custom:class"]}/>
+     
+      {/* chat-box is rendered okay .. it is not fixed correcltly on the screen */}
+      <Chatbox position="fixed" username = {user.attributes.given_name} last = {user.attributes.family_name} class = {user.attributes["custom:class"]}/>
+      {/* <Footer style={{flex: 1}} justifyContent='flex-end'/> */}
+       </div> 
   
   ) : (
      // else, sign up 

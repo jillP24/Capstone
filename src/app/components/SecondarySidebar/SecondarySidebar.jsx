@@ -15,6 +15,6 @@ const SecondarySidebar = () => {
             <SecondarySidebarToggle />
         </SecondarySidenavTheme>
     )
-}
+} 
 
 export default SecondarySidebar
