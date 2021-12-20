@@ -36,36 +36,33 @@ const useStyles = makeStyles(({ palette, ...theme }) => ({
  */
 
 const Chatbox = (props) => {
+    
+    // this part is currently not being used
     const [message, setMessage] = useState('')
-    const [messageList, setMessageList] = useState([])
-    // want to get username from db
-    const currentUserId = '7863a6802ez0e277a0f98534'
-    const chatBottomRef = document.querySelector('#chat-scroll')
-
+   const chatBottomRef = document.querySelector('#chat-scroll')
     const classes = useStyles()
 
 
 
-
-
-
-
-    const [msg, setMsg] = useState([]);
-    const [msg_len, setMsg_len] = useState([]);
+// msg is an array of all messages and their respective senders.
+// all_msg_len contains every message in the database
+    const [msg, setmsg] = useState([]);
+    const [all_msg_len, setall_msg_len] = useState([]);
    
+    // get the type of header along with the API key to call our graphql query
     const headers = {
         'Content-Type' : 'application/graphq',
         'x-api-key' : 'da2-6nbzvr7y7vb7dleve3arl5c25y'
       }
 
+      // get the correct year, firstname, and lastname
       year = props.class
       firstname = props.username
       username = firstname.concat(' ', props.last)
       
 
-      
-     
-    const fetchUser =
+    // fetchMSG is the query for messages in a specific groupchat while fetchALLmsg is for every groupchat
+    const fetchMSG =
     JSON.stringify({ "query": `query listChatPlatforms { listChatPlatforms(filter: {grad_class: {eq: \"${year}\" }})
     { items {
         grad_class
@@ -74,7 +71,7 @@ const Chatbox = (props) => {
         username
       }}   }`}) ;
 
-      const fetchAllMsg =
+      const fetchAllmsg =
     JSON.stringify({ "query": `query listChatPlatforms { listChatPlatforms
     { items {
         grad_class
@@ -85,37 +82,45 @@ const Chatbox = (props) => {
 
 
       
-
+/**
+ * useEffect is a function that is rendered when there is change. Used a library for fetching this daya called axios...
+ */
     useEffect( () => {
         
         const fetchData = async () => {
-            const  q_result = await axios.post('https://ibzxw22rhvdhvgqu7n7v6yrlcq.appsync-api.us-west-2.amazonaws.com/graphql', fetchUser, {
+            const  msg_result = await axios.post('https://ibzxw22rhvdhvgqu7n7v6yrlcq.appsync-api.us-west-2.amazonaws.com/graphql', fetchMSG, {
                 headers: headers
             });
         
-    const all_q_result = await axios.post('https://ibzxw22rhvdhvgqu7n7v6yrlcq.appsync-api.us-west-2.amazonaws.com/graphql', fetchAllMsg, {
+    const all_msg_result = await axios.post('https://ibzxw22rhvdhvgqu7n7v6yrlcq.appsync-api.us-west-2.amazonaws.com/graphql', fetchAllmsg, {
                 headers: headers
         }
     );
     
-    try
-{   const result = q_result.data.data.listChatPlatforms.items;
-    const all_result = all_q_result.data.data.listChatPlatforms.items;  
-    result.sort((a,b) => (a.message_number > b.message_number) ? 1 : -1); 
-    setMsg(result);
-    setMsg_len(all_result.length);
-} catch (err){
-      
-    fetchData();
- 
-    console.log(err)
-}
+        /**
+         * Use a try catch block and set one of the arrays to the msg array using 'setmsg' and set the other array using 'setall_msg_len'
+         * Sort the messages before setting it to the 'msg' array by the 'message_number' attribute
+         *  */ 
 
+    try
+{   const result = msg_result.data.data.listChatPlatforms.items;
+    const all_result = all_msg_result.data.data.listChatPlatforms.items;  
+    result.sort((a,b) => (a.message_number > b.message_number) ? 1 : -1); 
+    setmsg(result);
+    setall_msg_len(all_result.length);
+} catch (err){      
+    fetchData();
+}
     };
     fetchData();
 });
 
 
+/**
+ * 
+ * @param {*} event : this function is called when a user presses the send button or enter
+ * 
+ */
     const sendMessageOnEnter = (event) => {
         if (event.key === 'Enter' && !event.shiftKey || event.key === event.IconButton) {
             
@@ -128,9 +133,9 @@ const Chatbox = (props) => {
                     'Content-Type' : 'application/graphq',
                     'x-api-key' : 'da2-kkfmpdswindbrmmvcfmcimxlqa'
                   }
-                 var msg_id = msg_len +1;
+                 var msg_id = all_msg_len +1;
                  console.log(msg_id);
-                 const fetchUsers =
+                 const fetchMSGs =
                 JSON.stringify({ "query": `mutation myMutation { createChatPlatform(input: {grad_class: \"${year}\", message: \"${tempMessage}\", message_number: ${msg_id}, username: \"${username}\"}     )
                 {
                     grad_class
@@ -139,12 +144,13 @@ const Chatbox = (props) => {
                     username
                   }   }`}) ;
             
-            const result = axios.post('https://ibzxw22rhvdhvgqu7n7v6yrlcq.appsync-api.us-west-2.amazonaws.com/graphql', fetchUsers, {
+            const result = axios.post('https://ibzxw22rhvdhvgqu7n7v6yrlcq.appsync-api.us-west-2.amazonaws.com/graphql', fetchMSGs, {
                             headers: header
                     }
                 );
                             
             }
+            setMessage('');
         }
     }
 
@@ -179,15 +185,15 @@ const Chatbox = (props) => {
                     <div
                         className={clsx({
                             'p-5 flex': true,
-                            'justify-end': currentUserId === item.username,
+                            
                         })}
                         key={ind}
                     >
-                        {currentUserId !== item.username && (
+                        {(
                             <Avatar src={item.avatar} />
                         )} 
                         <div className="ml-3"> 
-                            {currentUserId !== item.contactId && (
+                            {(
                                 <h5 className="mt-0 mb-1 text-14">
                                     {item.username}
                                 </h5>
