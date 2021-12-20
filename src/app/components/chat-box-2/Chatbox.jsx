@@ -2,12 +2,17 @@ import React, { useState, useEffect, useCallback } from 'react'
 import { ChatAvatar } from 'app/components'
 import { IconButton, Icon, Divider, TextField, Avatar } from '@material-ui/core'
 import ScrollBar from 'react-perfect-scrollbar'
-// import { getChatRoomByContactId } from "app/views/chat-box/ChatService";
 import clsx from 'clsx'
 import { makeStyles } from '@material-ui/core/styles'
 import axios from 'axios'
 
-// THIS IS THE MESSAGING FILE
+/**
+ * this page is in charge of all the messaging services of our app. We query results from here and are able to send to our 
+ * database. We are connected to the graphQL Api of AWS through our API key which expires next september.
+ */
+
+
+//first we initialize the three inputs from our user info: grad_class, first_name, last_name
 
 var year = 0
 var firstname = ''
@@ -22,11 +27,15 @@ const useStyles = makeStyles(({ palette, ...theme }) => ({
     },
    
 }))
-// for previewing bot message
-const globalMessageList = []
+
+
+/**
+ * 
+ * @param {*} props  which is our user info of first_name, last_name, and graduating class
+ * @returns an displayed image of all the messages queried from our dynamoDB in the correct order w/ the correct sender
+ */
 
 const Chatbox = (props) => {
-    const [isAlive, setIsAlive] = useState(true)
     const [message, setMessage] = useState('')
     const [messageList, setMessageList] = useState([])
     // want to get username from db
@@ -39,7 +48,7 @@ const Chatbox = (props) => {
 
 
 
-//=======================================
+
 
     const [msg, setMsg] = useState([]);
     const [msg_len, setMsg_len] = useState([]);
@@ -88,18 +97,16 @@ const Chatbox = (props) => {
                 headers: headers
         }
     );
-    //update state component
+    
     try
 {   const result = q_result.data.data.listChatPlatforms.items;
-    const all_result = all_q_result.data.data.listChatPlatforms.items;
-    //listChatPlatforms
-    console.log(result)
-    setMsg_len(all_result.length);
+    const all_result = all_q_result.data.data.listChatPlatforms.items;  
     result.sort((a,b) => (a.message_number > b.message_number) ? 1 : -1); 
     setMsg(result);
+    setMsg_len(all_result.length);
 } catch (err){
       
-    setTimeout(fetchData, 100);
+    fetchData();
  
     console.log(err)
 }
@@ -136,43 +143,12 @@ const Chatbox = (props) => {
                             headers: header
                     }
                 );
-               
-                
-                let tempList = [...messageList]
-                //console.log(tempList);
-                
-                let messageObject = {
-                    text: tempMessage,
-                    contactId: currentUserId,
-                }
-
-                
-                tempList.push(messageObject)
-                globalMessageList.push(messageObject)
-                if (isAlive) setMessageList(tempList)
-                // dummyReply()
+                            
             }
-            setMessage('')
         }
     }
 
-     // ================================
 
-    // const dummyReply = async () => {
-    //     setTimeout(() => {
-    //         let tempList = [...messageList]
-    //         let messageObject = {
-    //             text: 'Good to hear from you. enjoy!!!',
-    //             contactId: 'opponents contact id',
-    //             avatar: '/assets/images/faces/13.jpg',
-    //             name: 'Frank Powell',
-    //         }
-
-    //         tempList.push(messageObject)
-    //         globalMessageList.push(messageObject)
-    //         if (isAlive) setMessageList(globalMessageList)
-    //     }, 2000)
-    // }
 
     const scrollToBottom = useCallback(() => {
         if (chatBottomRef) {
@@ -183,10 +159,7 @@ const Chatbox = (props) => {
         }
     }, [chatBottomRef])
 
-    useEffect(() => {
-        scrollToBottom()
-        return () => setIsAlive(false)
-    }, [msg, scrollToBottom])
+   
 
     return (
         <div className="flex-column h-full">
@@ -197,21 +170,9 @@ const Chatbox = (props) => {
                 )}
             >
                 <div className="flex items-center">
-                    {/* <ChatAvatar
-                        src="/assets/images/face-2.jpg"
-                        status="online"
-                    /> */}
-                    {/* STATUS ONLINE */}
-                    {/* <div className="ml-3">
-                        <h5 className="mt-0 mb-3px text-14"> Grou2022p Chat</h5>
-                      
-                    </div> */}
+                    
                 </div>
-                {/* <IconButton >
-                    <Icon className="text-body" fontSize="small">
-                        clear
-                    </Icon>
-                </IconButton> */}
+                
             </div>
             <ScrollBar className="flex-grow" id="chat-scroll">
                 {msg.map((item, ind) => (
