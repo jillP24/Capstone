@@ -32,7 +32,7 @@ const useStyles = makeStyles(({ palette, ...theme }) => ({
             'linear-gradient(180deg, rgba(255, 255, 255, 0.95) 44%, rgba(247, 247, 247, 0.4) 50%, rgba(255, 255, 255, 0))',
 
         '& .topbar-hold': {
-            backgroundColor: palette.primary.contrastText,
+            backgroundColor: palette.primary.light,
             height: 80,
             paddingLeft: 18,
             paddingRight: 20,
@@ -58,7 +58,7 @@ const useStyles = makeStyles(({ palette, ...theme }) => ({
         padding: 4,
         '& span': {
             margin: '0 8px',
-            // color: palette.text.primary
+            color: palette.text.primary
         },
     },
     menuItem: {
@@ -164,7 +164,7 @@ const Layout1Topbar = (props) => {
                             <MenuItem>
                                 {/* <Link className={classes.menuItem} to="/">
                                     <Icon> home </Icon>
-                                    <span className="pl-4"> Home </span>
+                                    <span className="pl-4"> About Us </span>
                                 </Link> */}
                             </MenuItem>
                             <MenuItem>

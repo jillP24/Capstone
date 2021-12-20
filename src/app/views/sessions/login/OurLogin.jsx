@@ -1,4 +1,3 @@
-//import '../App.css';
 import history from 'history.js'
 import { AmplifyAuthenticator, AmplifySignIn, AmplifySignOut, AmplifySignUp } from '@aws-amplify/ui-react';
 import { AuthState, onAuthUIStateChange } from '@aws-amplify/ui-components';
@@ -13,9 +12,10 @@ import Layout1Topbar from '../../../components/MatxLayout/Layout1/Layout1Topbar.
 import Layout1 from '../../../components/MatxLayout/Layout1/Layout1.jsx'
 import Footer from '../../../components/Footer/Footer.jsx'
 import './App.css'
+import {Router, Link} from "react-router-dom";
 import { isTargetNameAssociation } from '@aws-amplify/datastore';
 Amplify.configure(awsExports); 
-
+ 
 
 const formFields =
   [
@@ -64,24 +64,39 @@ function App() {
 
     <div className="App">
 
-      {/* top-bar is good and fixed correctly on the screen */}
-      <Layout1Topbar position="fixed" username = {user.attributes.given_name} class = {user.attributes["custom:class"]}/>
-     
-      {/* chat-box is rendered okay .. it is not fixed correcltly on the screen */}
-      <Chatbox position="fixed" username = {user.attributes.given_name} last = {user.attributes.family_name} class = {user.attributes["custom:class"]}/>
-      {/* <Footer style={{flex: 1}} justifyContent='flex-end'/> */}
-       </div> 
+    <Layout1Topbar position="fixed" username = {user.attributes.given_name} class = {user.attributes["custom:class"]}></Layout1Topbar>
+    <Chatbox  username = {user.attributes.given_name} last = {user.attributes.family_name} class = {user.attributes["custom:class"]}></Chatbox>
+    
+    
+    </div> 
   
   ) : (
      // else, sign up 
     <div className="App">
+
     <AmplifyAuthenticator usernameAlias="email">
       <AmplifySignIn headerText="CollegeConnect" />
       <AmplifySignUp formFields={formFields} usernameAlias="email" slot="sign-up" />    
       {/* <a href="javascript:location.reload(true)">Refresh Page </a> */}
+      
     </AmplifyAuthenticator>
+
+        <Link 
+          className="text-primary"
+          onClick={() =>
+          history.push('/session/About')
+          }> About Us! {' '}
+        </Link> 
+   
+      <a href="https://github.com/jillP24/Capstone">Github  </a>  
+      <style>
+        
+      </style>
+   
     </div>
+
+   
   );
 }
 
-export default App;  
+export default App;   

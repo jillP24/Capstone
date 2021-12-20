@@ -5,6 +5,8 @@ import ScrollBar from 'react-perfect-scrollbar'
 import clsx from 'clsx'
 import { makeStyles } from '@material-ui/core/styles'
 import axios from 'axios'
+import ScrollToBottom from 'react-scroll-to-bottom';
+import {useScrollToBottom} from 'react-scroll-to-bottom';
 
 /**
  * this page is in charge of all the messaging services of our app. We query results from here and are able to send to our 
@@ -39,7 +41,7 @@ const Chatbox = (props) => {
     
     // this part is currently not being used
     const [message, setMessage] = useState('')
-   const chatBottomRef = document.querySelector('#chat-scroll')
+    const chatBottomRef = document.querySelector('#chat-scroll')
     const classes = useStyles()
 
 
@@ -86,7 +88,7 @@ const Chatbox = (props) => {
  * useEffect is a function that is rendered when there is change. Used a library for fetching this daya called axios...
  */
     useEffect( () => {
-        
+       
         const fetchData = async () => {
             const  msg_result = await axios.post('https://ibzxw22rhvdhvgqu7n7v6yrlcq.appsync-api.us-west-2.amazonaws.com/graphql', fetchMSG, {
                 headers: headers
@@ -155,21 +157,24 @@ const Chatbox = (props) => {
         }
     }
 
-
-
-    const scrollToBottom = useCallback(() => {
+   
+    const scrollToBottom = useEffect(() => {
+        console.log("in scroll to bottom function")
         if (chatBottomRef) {
+            console.log("in scroll to bottom if statement")
             chatBottomRef.scrollTo({
-                top: chatBottomRef.scrollHeight,
+                bottom: chatBottomRef.scrollHeight,
                 behavior: 'smooth',
             })
         }
     }, [chatBottomRef])
 
-   
+ 
 
     return (
+        
         <div className="flex-column h-full">
+
             <div
                 className={clsx(
                     'flex justify-between items-center pl-5 py-3 pr-3',
@@ -181,7 +186,9 @@ const Chatbox = (props) => {
                 </div>
                 
             </div>
+            <scrollToBottom>    
             <ScrollBar className="flex-grow" id="chat-scroll">
+           
                 {msg.map((item, ind) => (
                     <div
                         className={clsx({
@@ -212,7 +219,6 @@ const Chatbox = (props) => {
                     </div>
                 ))}
 
-                {/* example of image sent by current user*/}
                 <div className="p-5 flex justify-end">
                     <div className="ml-3">
                         <div className="p-2 mb-2 flex justify-end items-center max-w-240 bg-light-gray border-radius-4 text-14">
@@ -229,7 +235,11 @@ const Chatbox = (props) => {
                         </span> */}
                     </div>
                 </div>
+                
+                
             </ScrollBar>
+            </scrollToBottom>
+           
             <div>
                 <Divider className={classes.dividerBG} />
                 <TextField
@@ -258,7 +268,9 @@ const Chatbox = (props) => {
                      
                 />
             </div>
+           
         </div>
+       
     )
 }
 
