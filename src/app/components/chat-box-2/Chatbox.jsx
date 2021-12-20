@@ -25,7 +25,6 @@ const useStyles = makeStyles(({ palette, ...theme }) => ({
 // for previewing bot message
 const globalMessageList = []
 
-
 const Chatbox = (props) => {
     const [isAlive, setIsAlive] = useState(true)
     const [message, setMessage] = useState('')
@@ -47,7 +46,7 @@ const Chatbox = (props) => {
    
     const headers = {
         'Content-Type' : 'application/graphq',
-        'x-api-key' : 'da2-kkfmpdswindbrmmvcfmcimxlqa'
+        'x-api-key' : 'da2-6nbzvr7y7vb7dleve3arl5c25y'
       }
 
       year = props.class
@@ -76,30 +75,32 @@ const Chatbox = (props) => {
       }}   }`}) ;
 
 
+      
 
     useEffect( () => {
+        
         const fetchData = async () => {
-            const q_result = await axios.post('https://ibzxw22rhvdhvgqu7n7v6yrlcq.appsync-api.us-west-2.amazonaws.com/graphql', fetchUser, {
+            const  q_result = await axios.post('https://ibzxw22rhvdhvgqu7n7v6yrlcq.appsync-api.us-west-2.amazonaws.com/graphql', fetchUser, {
                 headers: headers
-        }
-    );
-    
+            });
+        
     const all_q_result = await axios.post('https://ibzxw22rhvdhvgqu7n7v6yrlcq.appsync-api.us-west-2.amazonaws.com/graphql', fetchAllMsg, {
                 headers: headers
         }
     );
     //update state component
     try
-{    const result = q_result.data.data.listChatPlatforms.items;
+{   const result = q_result.data.data.listChatPlatforms.items;
     const all_result = all_q_result.data.data.listChatPlatforms.items;
     //listChatPlatforms
-    
+    console.log(result)
     setMsg_len(all_result.length);
     result.sort((a,b) => (a.message_number > b.message_number) ? 1 : -1); 
     setMsg(result);
 } catch (err){
-    //console.log(q_result.data.data.listChatPlatforms)
-    //console.log(all_q_result.data.data.listChatPlatforms)
+      
+    setTimeout(fetchData, 100);
+ 
     console.log(err)
 }
 
@@ -108,12 +109,6 @@ const Chatbox = (props) => {
 });
 
 
-//=======================================
-
-
-
-
-    // ================================
     const sendMessageOnEnter = (event) => {
         if (event.key === 'Enter' && !event.shiftKey || event.key === event.IconButton) {
             
@@ -155,7 +150,7 @@ const Chatbox = (props) => {
                 tempList.push(messageObject)
                 globalMessageList.push(messageObject)
                 if (isAlive) setMessageList(tempList)
-                dummyReply()
+                // dummyReply()
             }
             setMessage('')
         }
@@ -163,21 +158,21 @@ const Chatbox = (props) => {
 
      // ================================
 
-    const dummyReply = async () => {
-        setTimeout(() => {
-            let tempList = [...messageList]
-            let messageObject = {
-                text: 'Good to hear from you. enjoy!!!',
-                contactId: 'opponents contact id',
-                avatar: '/assets/images/faces/13.jpg',
-                name: 'Frank Powell',
-            }
+    // const dummyReply = async () => {
+    //     setTimeout(() => {
+    //         let tempList = [...messageList]
+    //         let messageObject = {
+    //             text: 'Good to hear from you. enjoy!!!',
+    //             contactId: 'opponents contact id',
+    //             avatar: '/assets/images/faces/13.jpg',
+    //             name: 'Frank Powell',
+    //         }
 
-            tempList.push(messageObject)
-            globalMessageList.push(messageObject)
-            if (isAlive) setMessageList(globalMessageList)
-        }, 2000)
-    }
+    //         tempList.push(messageObject)
+    //         globalMessageList.push(messageObject)
+    //         if (isAlive) setMessageList(globalMessageList)
+    //     }, 2000)
+    // }
 
     const scrollToBottom = useCallback(() => {
         if (chatBottomRef) {
@@ -191,7 +186,7 @@ const Chatbox = (props) => {
     useEffect(() => {
         scrollToBottom()
         return () => setIsAlive(false)
-    }, [messageList, scrollToBottom])
+    }, [msg, scrollToBottom])
 
     return (
         <div className="flex-column h-full">
