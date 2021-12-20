@@ -15,7 +15,7 @@ import axios from 'axios'
 //first we initialize the three inputs from our user info: grad_class, first_name, last_name
 
 var year = 0
-var firstname = ''
+var firstname = '' 
 var username = ''
 
 const useStyles = makeStyles(({ palette, ...theme }) => ({
