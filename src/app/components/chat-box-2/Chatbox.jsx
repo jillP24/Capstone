@@ -108,8 +108,9 @@ const Chatbox = (props) => {
     result.sort((a,b) => (a.message_number > b.message_number) ? 1 : -1); 
     setmsg(result);
     setall_msg_len(all_result.length);
-} catch (err){      
-    fetchData();
+} catch (err){   
+    console.log(err)   
+    setTimeout(fetchData, 1000)
 }
     };
     fetchData();
