@@ -57,6 +57,7 @@ function App() {
   const [authState, setAuthState] = React.useState();
   const [user, setUser] = React.useState();
 
+
   React.useEffect(() => {
 
 
@@ -93,23 +94,29 @@ function App() {
   
   ) : (
      // else, sign up 
+    
     <div className="App">
-
+      <div style={sticky}> 
+      <font size="50">
+      CollegeConnect
+      </font>
+      </div>
     <AmplifyAuthenticator usernameAlias="email">
       <AmplifySignIn headerText="CollegeConnect" />
       <AmplifySignUp formFields={formFields} usernameAlias="email" slot="sign-up" />    
       {/* <a href="javascript:location.reload(true)">Refresh Page </a> */}
       
     </AmplifyAuthenticator>
-
+        <font size="50">
         <Link 
           className="text-primary"
           onClick={() =>
-          history.push('/session/About')
-          }> About Us! {' '}
+          history.push('/session/About') 
+          }> About Us! {' '} 
         </Link> 
-   
-      <a href="https://github.com/jillP24/Capstone">Github  </a>  
+        
+      <a href="https://github.com/jillP24/Capstone" >Github  </a>  
+      </font>
       <style>
         
       </style>
