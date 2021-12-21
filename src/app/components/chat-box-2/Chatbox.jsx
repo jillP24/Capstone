@@ -121,7 +121,7 @@ const Chatbox = (props) => {
     setmsg(result);
     setall_msg_len(all_result.length);
 } catch (err){   
-    console.log(err)   
+      
     setTimeout(fetchData, 1000)
 }
     };
@@ -141,13 +141,13 @@ const Chatbox = (props) => {
             
             if (tempMessage !== '') {
     
-                console.log(year)
+                
                 const header = {
                     'Content-Type' : 'application/graphq',
                     'x-api-key' : 'da2-kkfmpdswindbrmmvcfmcimxlqa'
                   }
                  var msg_id = all_msg_len +1;
-                 console.log(msg_id);
+                 
                  const fetchMSGs =
                 JSON.stringify({ "query": `mutation myMutation { createChatPlatform(input: {grad_class: \"${year}\", message: \"${tempMessage}\", message_number: ${msg_id}, username: \"${username}\"}     )
                 {
