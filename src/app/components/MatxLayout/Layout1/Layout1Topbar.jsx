@@ -172,8 +172,8 @@ const Layout1Topbar = (props) => {
                                     className={classes.menuItem}
                                     to="/page-layouts/user-profile"
                                 >
-                                    <Icon> person </Icon>
-                                    <span className="pl-4"> Profile </span>
+                                    {/* <Icon> person </Icon>
+                                    <span className="pl-4"> Profile </span> */}
                                 </Link>
                             </MenuItem>
                             {/* <MenuItem className={classes.menuItem}>
