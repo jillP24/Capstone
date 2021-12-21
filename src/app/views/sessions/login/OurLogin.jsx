@@ -1,21 +1,22 @@
 import history from 'history.js'
-import { AmplifyAuthenticator, AmplifySignIn, AmplifySignOut, AmplifySignUp } from '@aws-amplify/ui-react';
+import { AmplifyAuthenticator, AmplifySignIn, AmplifySignUp } from '@aws-amplify/ui-react';
 import { AuthState, onAuthUIStateChange } from '@aws-amplify/ui-components';
-import awsconfig from '../../../../aws-exports';
-import { Amplify, Auth } from 'aws-amplify';
-import { withAuthenticator } from '@aws-amplify/ui-react';
+import { Amplify} from 'aws-amplify';
 //import '@aws-amplify/ui-react/styles.css';
 import awsExports from '../../../../aws-exports.js';
 import React from 'react';
 import Chatbox from '../../../components/chat-box-2/Chatbox.jsx'
 import Layout1Topbar from '../../../components/MatxLayout/Layout1/Layout1Topbar.jsx'
-import Layout1 from '../../../components/MatxLayout/Layout1/Layout1.jsx'
-import Footer from '../../../components/Footer/Footer.jsx'
 import './App.css'
-import {Router, Link} from "react-router-dom";
-import { isTargetNameAssociation } from '@aws-amplify/datastore';
+import {Link} from "react-router-dom";
 Amplify.configure(awsExports); 
 
+
+
+/**
+ * sticky styling that we use later for our topbar layout component 
+ * 
+ */
 
 const sticky = {
   position: "sticky",
@@ -24,6 +25,11 @@ const sticky = {
 }
 
  
+/**
+ * defining the fields that will appear on the signup page 
+ * 
+ * 
+ */
 
 const formFields =
   [
@@ -53,10 +59,21 @@ const formFields =
     }
   ];
 
+
+/**
+ * 
+ * @returns the main page of the app i.e. the chatbox, topbar and signout components 
+ */
+
 function App() {
   const [authState, setAuthState] = React.useState();
   const [user, setUser] = React.useState();
 
+
+    /**
+   * lets us keep track of user authentication
+   * 
+   */
 
   React.useEffect(() => {
 
@@ -68,7 +85,7 @@ function App() {
   }, []); 
 
 
-  // if user is authenticated, redirect
+  // if user is signed in, redirect to the homepage 
   return authState === AuthState.SignedIn && user ? (
 
     <div className="App">
@@ -93,7 +110,8 @@ function App() {
     </div> 
   
   ) : (
-     // else, sign up 
+
+     // else, redirect to the sign in/sign up page
     
     <div className="App">
       <div style={sticky}> 
@@ -104,8 +122,6 @@ function App() {
     <AmplifyAuthenticator usernameAlias="email">
       <AmplifySignIn headerText="CollegeConnect" />
       <AmplifySignUp formFields={formFields} usernameAlias="email" slot="sign-up" />    
-      {/* <a href="javascript:location.reload(true)">Refresh Page </a> */}
-      
     </AmplifyAuthenticator>
         <font size="30">
         
