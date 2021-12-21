@@ -1,26 +1,26 @@
 import NotFound from './NotFound'
-import ForgotPassword from './ForgotPassword'
-import JwtRegister from './register/JwtRegister'
-import JwtLogin from './login/JwtLogin'
 import OurLogin from './login/OurLogin'  
 import About from './About'
 
-
+/**
+ * This file creates routes for our three pages
+ * @author MatX Template
+ * @author Jill 
+ * @author Josh 
+ */ 
 
 const sessionRoutes = [
+    // redirects to our about page
     {
         path: '/session/about',
         component: About,
     },  
+    // default redirects to our login page
     { 
         path: '/',
-        // change this component here from "JwtLogin" to "OurLogin" 
         component: OurLogin,
     },
-    // {
-    //     path: '/session/forgot-password',
-    //     component: ForgotPassword,
-    // },
+    // redirects to our error page
     {
         path: '/session/404',
         component: NotFound,

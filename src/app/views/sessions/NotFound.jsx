@@ -2,7 +2,14 @@ import React from 'react'
 import { Button } from '@material-ui/core'
 import { Link } from 'react-router-dom'
 
+/**
+ * This is our error page file
+ * @author MatX Template
+ * @author Jill 
+ */ 
+
 const NotFound = () => {
+    // returns page that says "back to home" and links back to our default login page
     return (
         <div className="flex justify-center items-center h-full-screen w-full">
             <div className="flex-column justify-center items-center max-w-320">

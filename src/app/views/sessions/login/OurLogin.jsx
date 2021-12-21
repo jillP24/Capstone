@@ -1,19 +1,12 @@
 import history from 'history.js'
-import { AmplifyAuthenticator, AmplifySignIn, AmplifySignOut, AmplifySignUp } from '@aws-amplify/ui-react';
+import { AmplifyAuthenticator, AmplifySignIn, AmplifySignUp } from '@aws-amplify/ui-react';
 import { AuthState, onAuthUIStateChange } from '@aws-amplify/ui-components';
-import awsconfig from '../../../../aws-exports';
-import { Amplify, Auth } from 'aws-amplify';
-import { withAuthenticator } from '@aws-amplify/ui-react';
-//import '@aws-amplify/ui-react/styles.css';
+import { Amplify } from 'aws-amplify';
 import awsExports from '../../../../aws-exports.js';
 import React from 'react';
 import Chatbox from '../../../components/chat-box-2/Chatbox.jsx'
 import Layout1Topbar from '../../../components/MatxLayout/Layout1/Layout1Topbar.jsx'
-import Layout1 from '../../../components/MatxLayout/Layout1/Layout1.jsx'
-import Footer from '../../../components/Footer/Footer.jsx'
-import './App.css'
-import {Router, Link} from "react-router-dom";
-import { isTargetNameAssociation } from '@aws-amplify/datastore';
+import { Link } from "react-router-dom";
 Amplify.configure(awsExports); 
 
 
@@ -97,7 +90,7 @@ function App() {
     
     <div className="App">
       <div style={sticky}> 
-      <font size="30">
+      <font size="20">
       CollegeConnect
       </font>
       </div>
@@ -107,7 +100,7 @@ function App() {
       {/* <a href="javascript:location.reload(true)">Refresh Page </a> */}
       
     </AmplifyAuthenticator>
-        <font size="30">
+        <font size="20">
         
         <Link 
           className="text-primary"

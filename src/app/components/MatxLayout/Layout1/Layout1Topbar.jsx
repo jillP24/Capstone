@@ -7,22 +7,22 @@ import {
     useMediaQuery, 
     Hidden,
 } from '@material-ui/core'
-import { MatxMenu, MatxSearchBox } from 'app/components'
-import NotificationBar from '../../NotificationBar/NotificationBar'
+import { MatxMenu } from 'app/components'
 import { Link } from 'react-router-dom'
-import ShoppingCart from '../../ShoppingCart/ShoppingCart'
 import { makeStyles, useTheme } from '@material-ui/core/styles'
 import clsx from 'clsx'
 import useAuth from 'app/hooks/useAuth'
 import useSettings from 'app/hooks/useSettings'
-import { NotificationProvider } from 'app/contexts/NotificationContext'
-import OurLogin from 'app/views/sessions/login/OurLogin'
-import { AmplifyAuthenticator, AmplifySignIn, AmplifySignOut, AmplifySignUp } from '@aws-amplify/ui-react';
-import { Amplify, Auth } from 'aws-amplify';
+import { AmplifySignOut } from '@aws-amplify/ui-react';
+import { Auth } from 'aws-amplify';
 
-// TOP BAR 
-// MENU DROPDOWN FROM TOP RIGHT OF THE BAR
+/**
+ * This is our top-bar 
+ * @author MatX Template
+ * @author Jill 
+ */ 
 
+// styling for the top-bar
 const useStyles = makeStyles(({ palette, ...theme }) => ({
     topbar: {
         top: 0,
@@ -50,6 +50,7 @@ const useStyles = makeStyles(({ palette, ...theme }) => ({
             height: 64,
         },
     },
+    // styling for drop-down user menu
     userMenu: {
         display: 'flex',
         alignItems: 'center',
@@ -61,6 +62,7 @@ const useStyles = makeStyles(({ palette, ...theme }) => ({
             color: palette.text.primary
         },
     },
+    // styling for each menu item
     menuItem: {
         display: 'flex',
         alignItems: 'center',
@@ -68,6 +70,7 @@ const useStyles = makeStyles(({ palette, ...theme }) => ({
     },
 }))
 
+// main function for top bar
 const Layout1Topbar = (props) => {
     const theme = useTheme()
     const classes = useStyles()
@@ -103,56 +106,36 @@ const Layout1Topbar = (props) => {
         updateSidebarMode({ mode })
     }
 
+    // html for top bar
     return (
         <div className={classes.topbar}>
             <div className={clsx({ 'topbar-hold': true, fixed: fixed })}>
                 <div className="flex justify-between items-center h-full">
                     <div className="flex">
+                        {/* drop-down menu icon */}
                         <IconButton
                             onClick={handleSidebarToggle}
                             className="hide-on-pc"
                         >
-                            {/* <Icon>menu</Icon> */}
                         </IconButton>
-                     
-                        {/* <div className="hide-on-mobile">
-                            <IconButton>
-                                <Icon>mail_outline</Icon>
-                            </IconButton>
-
-                            <IconButton>
-                                <Icon>web_asset</Icon>
-                            </IconButton>
-
-                            <IconButton>
-                                <Icon>star_outline</Icon>
-                            </IconButton>
-                        </div> */}
                     </div>
                     <div>
-                    {/* replace year with year from database */}
+                    {/* Our welcome message in the middle of top-bar */}
                     <Hidden xsDown>
                         <span> 
+                              {/* props.class grabs the graduating class the user input on login page */}
                         <strong> Colorado College Class of {props.class} GroupChat!</strong>
                         </span>
                     </Hidden>
                     </div>
                     <div className="flex items-center">
-                        {/* <MatxSearchBox /> */}
-                        {/* <NotificationProvider>
-                            <NotificationBar />
-                        </NotificationProvider> */}
-
-                        {/* <NotificationBar2 /> */}
-
-                        {/* <ShoppingCart /> */}
-
+                         {/* far right of the top-bar – greets the user */}
                         <MatxMenu
                             menuButton={
                                 <div className={classes.userMenu}>
                                     <Hidden xsDown>
 
-                                        {/* HERE WE CAN GREET EACH USER WITH NAME FROM DATABSE */}
+                                         {/* props.username grabs the name the user input on login page */}
                                         <span>
                                             <strong> Hi, {props.username}!</strong>
                                         </span>
@@ -161,33 +144,14 @@ const Layout1Topbar = (props) => {
                                 </div>
                             }
                         >
-                            <MenuItem>
-                                {/* <Link className={classes.menuItem} to="/">
-                                    <Icon> home </Icon>
-                                    <span className="pl-4"> About Us </span>
-                                </Link> */}
-                            </MenuItem>
-                            <MenuItem>
-                                <Link
-                                    className={classes.menuItem}
-                                    to="/page-layouts/user-profile"
-                                >
-                                    {/* <Icon> person </Icon>
-                                    <span className="pl-4"> Profile </span> */}
-                                </Link>
-                            </MenuItem>
-                            {/* <MenuItem className={classes.menuItem}>
-                                <Icon> settings </Icon>
-                                <span className="pl-4"> Settings </span>
-                            </MenuItem> */}
+                             {/* drop-down menu under where the user is greeted */}
+                             {/* includes logout option which redirects user back to our login page */}
                             <MenuItem
-                                //onClick={logout}
                                 onClick={() => Auth.signOut()}
                                 className={classes.menuItem}
                             >
                                  <Icon> power_settings_new </Icon>
                                  <AmplifySignOut />
-                                {/* <span className="pl-4"> Logout </span> */}
                             </MenuItem>
                         </MatxMenu>
                     </div>
@@ -198,6 +162,3 @@ const Layout1Topbar = (props) => {
 }
 
 export default React.memo(Layout1Topbar)
-
-// TOOK OUT SEARCH BAR, SHOPPING CART, NOTIFICATION BELL
-// AND OTHER FEATURES WE DON'T NEED
