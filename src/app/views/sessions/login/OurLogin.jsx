@@ -97,7 +97,7 @@ function App() {
     
     <div className="App">
       <div style={sticky}> 
-      <font size="50">
+      <font size="30">
       CollegeConnect
       </font>
       </div>
@@ -107,7 +107,8 @@ function App() {
       {/* <a href="javascript:location.reload(true)">Refresh Page </a> */}
       
     </AmplifyAuthenticator>
-        <font size="50">
+        <font size="30">
+        
         <Link 
           className="text-primary"
           onClick={() =>
@@ -115,7 +116,7 @@ function App() {
           }> About Us! {' '} 
         </Link> 
         
-      <a href="https://github.com/jillP24/Capstone" >Github  </a>  
+      <a href="https://github.com/jillP24/Capstone">Github  </a>  
       </font>
       <style>
         
