@@ -26,7 +26,7 @@ function App() {
       
                Our application is a messaging-based platform geared
                towards universities and colleges. Our mission is to provide students with a 
-               school-sponsored space in wihch they can communicate with classmates in their 
+               school-sponsored space in which they can communicate with classmates in their 
                own graduating class.  <br></br><br></br>
 
                Our platform's sole functionality is messaging. <br></br><br></br>
