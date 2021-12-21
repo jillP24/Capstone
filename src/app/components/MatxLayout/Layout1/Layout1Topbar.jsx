@@ -185,7 +185,7 @@ const Layout1Topbar = (props) => {
                                 onClick={() => Auth.signOut()}
                                 className={classes.menuItem}
                             >
-                                 {/* <Icon> power_settings_new </Icon> */}
+                                 <Icon> power_settings_new </Icon>
                                  <AmplifySignOut />
                                 {/* <span className="pl-4"> Logout </span> */}
                             </MenuItem>
