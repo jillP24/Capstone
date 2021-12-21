@@ -30,6 +30,17 @@ const useStyles = makeStyles(({ palette, ...theme }) => ({
    
 }))
 
+var count = 0 
+
+function scrollToBottom () { 
+    count += 1
+
+    if (count <5)  { 
+        window.scrollTo(0,document.body.scrollHeight);
+    }
+        
+}
+
 
 /**
  * 
@@ -43,6 +54,7 @@ const Chatbox = (props) => {
     const [message, setMessage] = useState('')
     const chatBottomRef = document.querySelector('#chat-scroll')
     const classes = useStyles()
+    scrollToBottom()
 
 
 
@@ -156,18 +168,6 @@ const Chatbox = (props) => {
             setMessage('');
         }
     }
-
-   
-    const scrollToBottom = useEffect(() => {
-        console.log("in scroll to bottom function")
-        if (chatBottomRef) {
-            console.log("in scroll to bottom if statement")
-            chatBottomRef.scrollTo({
-                bottom: chatBottomRef.scrollHeight,
-                behavior: 'smooth',
-            })
-        }
-    }, [chatBottomRef])
 
  
 

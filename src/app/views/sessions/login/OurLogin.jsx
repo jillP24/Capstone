@@ -15,6 +15,14 @@ import './App.css'
 import {Router, Link} from "react-router-dom";
 import { isTargetNameAssociation } from '@aws-amplify/datastore';
 Amplify.configure(awsExports); 
+
+
+const sticky = {
+  position: "sticky",
+  top: 0,
+  justify: "flex-start"
+}
+
  
 
 const formFields =
@@ -64,8 +72,21 @@ function App() {
 
     <div className="App">
 
-    <Layout1Topbar position="fixed" username = {user.attributes.given_name} class = {user.attributes["custom:class"]}></Layout1Topbar>
-    <Chatbox  username = {user.attributes.given_name} last = {user.attributes.family_name} class = {user.attributes["custom:class"]}></Chatbox>
+      <div style={sticky}> 
+
+      <Layout1Topbar username = {user.attributes.given_name} class = {user.attributes["custom:class"]}></Layout1Topbar>
+
+      </div>
+
+      <div> 
+
+      <Chatbox  username = {user.attributes.given_name} last = {user.attributes.family_name} class = {user.attributes["custom:class"]}></Chatbox>
+
+
+      </div>
+
+    
+   
     
     
     </div> 
