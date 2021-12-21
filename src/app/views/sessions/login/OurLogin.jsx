@@ -10,6 +10,12 @@ import { Link } from "react-router-dom";
 Amplify.configure(awsExports); 
 
 
+
+/**
+ * sticky styling that we use later for our topbar layout component 
+ * 
+ */
+
 const sticky = {
   position: "sticky",
   top: 0,
@@ -17,6 +23,11 @@ const sticky = {
 }
 
  
+/**
+ * defining the fields that will appear on the signup page 
+ * 
+ * 
+ */
 
 const formFields =
   [
@@ -46,10 +57,21 @@ const formFields =
     }
   ];
 
+
+/**
+ * 
+ * @returns the main page of the app i.e. the chatbox, topbar and signout components 
+ */
+
 function App() {
   const [authState, setAuthState] = React.useState();
   const [user, setUser] = React.useState();
 
+
+    /**
+   * lets us keep track of user authentication
+   * 
+   */
 
   React.useEffect(() => {
 
@@ -61,7 +83,7 @@ function App() {
   }, []); 
 
 
-  // if user is authenticated, redirect
+  // if user is signed in, redirect to the homepage 
   return authState === AuthState.SignedIn && user ? (
 
     <div className="App">
@@ -86,7 +108,8 @@ function App() {
     </div> 
   
   ) : (
-     // else, sign up 
+
+     // else, redirect to the sign in/sign up page
     
     <div className="App">
       <div style={sticky}> 
@@ -97,8 +120,6 @@ function App() {
     <AmplifyAuthenticator usernameAlias="email">
       <AmplifySignIn headerText="CollegeConnect" />
       <AmplifySignUp formFields={formFields} usernameAlias="email" slot="sign-up" />    
-      {/* <a href="javascript:location.reload(true)">Refresh Page </a> */}
-      
     </AmplifyAuthenticator>
         <font size="20">
         
