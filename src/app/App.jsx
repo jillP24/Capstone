@@ -12,6 +12,11 @@ import AuthGuard from './auth/AuthGuard'
 import { AuthProvider } from 'app/contexts/JWTAuthContext'
 import { SettingsProvider } from 'app/contexts/SettingsContext'
 
+/**
+ * This is the entry point for the entire project
+ * @author Matx Template
+ * 
+ */ 
 const App = () => {
     return (
         <AppContext.Provider value={{ routes }}>

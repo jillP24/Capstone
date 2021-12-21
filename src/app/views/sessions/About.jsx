@@ -33,7 +33,8 @@ function App() {
                Once a user has provided a valid school email, their name, and their graduating class, they are
                redirected to the group-chat for their graduating class.<br></br><br></br>
                
-               It's that simple.
+               It's that simple.  <br></br><br></br>
+               Supported Schools: Colorado College
             </a>
             <br></br><br></br>
             {/* links back to our login page */}
