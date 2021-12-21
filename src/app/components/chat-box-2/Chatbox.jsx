@@ -5,8 +5,6 @@ import ScrollBar from 'react-perfect-scrollbar'
 import clsx from 'clsx'
 import { makeStyles } from '@material-ui/core/styles'
 import axios from 'axios'
-import ScrollToBottom from 'react-scroll-to-bottom';
-import {useScrollToBottom} from 'react-scroll-to-bottom';
 
 /**
  * this page is in charge of all the messaging services of our app. We query results from here and are able to send to our 
