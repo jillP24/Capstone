@@ -1,2 +1,5 @@
 # CollegeConnect
 
+## About 
+
+### 
