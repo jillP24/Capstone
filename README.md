@@ -41,17 +41,3 @@ In the future, we want our project to be able to have direct messaging. This way
 
  
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
