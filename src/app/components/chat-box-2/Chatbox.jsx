@@ -132,7 +132,7 @@ const Chatbox = (props) => {
 /**
  * 
  * @param {*} event : this function is called when a user presses the send button or enter
- * 
+ * @return send a graphQL. mutation to our dynamoDB with the correct message, message_number, username, and graduating class
  */
     const sendMessageOnEnter = (event) => {
         if (event.key === 'Enter' && !event.shiftKey || event.key === event.IconButton) {
@@ -168,6 +168,9 @@ const Chatbox = (props) => {
     }
 
  
+        /**
+        * Display the screen with the messages and users in the correct order
+        *  */ 
 
     return (
         
