@@ -64,7 +64,7 @@ const Chatbox = (props) => {
     // get the type of header along with the API key to call our graphql query
     const headers = {
         'Content-Type' : 'application/graphq',
-        'x-api-key' : 'da2-6nbzvr7y7vb7dleve3arl5c25y'
+        'x-api-key' : 'da2-enrpm7b7rzacljgm4zm7xo53zy'
       }
 
       // get the correct year, firstname, and lastname
